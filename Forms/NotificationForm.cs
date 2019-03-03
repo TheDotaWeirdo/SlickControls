@@ -20,7 +20,7 @@ namespace SlickControls.Forms
 		public Notification Notification { get; }
 		private Form Form;
 
-		private NotificationForm(Notification notification, Form form = null, int? timeoutSeconds = null)
+		private NotificationForm(Notification notification, Form form = null, bool longSound = false, int? timeoutSeconds = null)
 		{
 			InitializeComponent();
 
@@ -29,8 +29,8 @@ namespace SlickControls.Forms
 
 			ResizeRedraw = TopMost = DoubleBuffered = true;
 
-			if (notification.Action == null)
-				Cursor = Cursors.Default;
+			if (notification.Action != null)
+				Cursor = Cursors.Hand;
 
 			Disposed += (s, e) =>
 			{
@@ -59,13 +59,18 @@ namespace SlickControls.Forms
 					.Elapsed += (s, e) =>
 					{
 						if (!IsDisposed)
-							this.TryInvoke(Dispose);
+							this.TryInvoke(Close);
 
 						(s as System.Timers.Timer).Dispose();
 					};
 			}
 
 			FormDesign.DesignChanged += DesignChanged;
+
+			var str = longSound ? Properties.Resources.Notif_Long : Properties.Resources.Notif_Quick;
+
+			var snd = new System.Media.SoundPlayer(str);
+			snd.Play();
 		}
 
 		internal static void Clear()
@@ -98,12 +103,17 @@ namespace SlickControls.Forms
 
 		private static Form Empty = new Form();
 
-		public static NotificationForm Push(Notification notification, Form form = null, int? timeoutSeconds = null)
+		public static NotificationForm Push(Notification notification, Form form = null, bool longSound = false, int? timeoutSeconds = null)
 		{
 			if (form != null && (!form.Visible || form.WindowState == FormWindowState.Minimized))
 				form = null;
 
-			var frm = new NotificationForm(notification, form, timeoutSeconds) { Size = notification.Size };
+			var frm = new NotificationForm(notification, form, longSound, timeoutSeconds) { Size = new Size(0, notification.Size.Height) };
+			frm.PictureBox.Size = notification.Size;
+
+			var aH = new AnimationHandler(frm, notification.Size) { SpeedModifier = 8, Interval = 14, IgnoreHeight = true };
+			aH.OnAnimationTick += (s, e, p) => frm.SetLocation();
+			aH.StartAnimation();
 
 			if (Notifications.ContainsKey(form ?? Empty))
 				Notifications[form ?? Empty].Add(frm);
@@ -121,11 +131,11 @@ namespace SlickControls.Forms
 		{
 			e.Graphics.Clear(FormDesign.Design.BackColor);
 
-			e.Graphics.DrawRectangle(new Pen(FormDesign.Design.AccentColor, 1), 0, 0, Width-1, Height-1);
+			e.Graphics.DrawRectangle(new Pen(FormDesign.Design.AccentColor, 1), 0, 0, PictureBox.Width-1, PictureBox.Height-1);
 
 			GetColorIcons(out var icon, out var color);
 
-			e.Graphics.FillRectangle(new SolidBrush(color), 0, 0, 2, Height);
+			e.Graphics.FillRectangle(new SolidBrush(color), 0, 0, 2, PictureBox.Height);
 
 			e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
@@ -137,13 +147,13 @@ namespace SlickControls.Forms
 
 				e.Graphics.DrawString(Notification.Title, new Font("Nirmala UI", 9.75F), new SolidBrush(FormDesign.Design.ForeColor), icon.IfNull(8, 25), 4);
 
-				e.Graphics.DrawString(Notification.Description, new Font("Nirmala UI", 8.25F), new SolidBrush(FormDesign.Design.InfoColor), new RectangleF(12, 30, Width - 15, Height - 33), new StringFormat() { Trimming = StringTrimming.EllipsisCharacter });
+				e.Graphics.DrawString(Notification.Description, new Font("Nirmala UI", 8.25F), new SolidBrush(FormDesign.Design.InfoColor), new RectangleF(12, 30, PictureBox.Width - 15, PictureBox.Height - 33), new StringFormat() { Trimming = StringTrimming.EllipsisCharacter });
 			}
 
-			if (new Rectangle(Width - 20, 4, 16, 16).Contains(PointToClient(MousePosition)))
-				e.Graphics.DrawImage(Properties.Resources.Tiny_Close.Color(FormDesign.Design.ActiveColor), Width - 20, 4, 16, 16);
+			if (new Rectangle(PictureBox.Width - 20, 4, 16, 16).Contains(PointToClient(MousePosition)))
+				e.Graphics.DrawImage(Properties.Resources.Tiny_Close.Color(FormDesign.Design.ActiveColor), PictureBox.Width - 20, 4, 16, 16);
 			else
-				e.Graphics.DrawImage(Properties.Resources.Tiny_Close.Color(FormDesign.Design.IconColor), Width - 20, 4, 16, 16);
+				e.Graphics.DrawImage(Properties.Resources.Tiny_Close.Color(FormDesign.Design.IconColor), PictureBox.Width - 20, 4, 16, 16);
 		}
 
 		private void GetColorIcons(out Bitmap icon, out Color color)
@@ -192,7 +202,10 @@ namespace SlickControls.Forms
 		{
 			PictureBox.Invalidate();
 
-			PictureBox.Cursor = new Rectangle(Width - 20, 4, 16, 16).Contains(PointToClient(MousePosition)) ? Cursors.Hand : Cursors.Default;
+			if (Notification.Action == null)
+				PictureBox.Cursor = new Rectangle(Width - 20, 4, 16, 16).Contains(PointToClient(MousePosition))
+					? Cursors.Hand
+					: Cursors.Default;
 		}
 
 		private void NotificationForm_MouseClick(object sender, MouseEventArgs e)
@@ -204,15 +217,22 @@ namespace SlickControls.Forms
 					if (Notification.Action != null)
 					{
 						Notification.Action.Invoke();
-						Dispose();
+                        Close();
 					}
 				}
 				else
-					Dispose();
+                    Close();
 			}
 
 			if (Form != null)
 				Form.ShowUp();
 		}
+
+        public new void Close()
+        {
+            var aH = new AnimationHandler(this, Size.Empty) { SpeedModifier = 8, Interval = 14, IgnoreHeight = true, Lazy = true };
+            aH.OnAnimationTick += (s, e, p) => SetLocation();
+            aH.StartAnimation(Dispose);
+        }
 	}
 }

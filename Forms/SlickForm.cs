@@ -121,7 +121,7 @@ namespace SlickControls.Forms
 
 					new FlatStripItem("Close", Close, Properties.Resources.Tiny_Close),
 
-					FlatStripItem.Empty,
+					new FlatStripItem("", show: (!panelForm || !((this as BasePanelForm).CurrentPanel is PC_ThemeChanger))),
 
 					new FlatStripItem("Theme Changer", () =>
 					{

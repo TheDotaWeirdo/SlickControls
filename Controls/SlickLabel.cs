@@ -16,7 +16,7 @@ using SlickControls.Forms;
 namespace SlickControls.Controls
 {
     [DefaultEvent("Click")]
-	public partial class SlickLabel : SlickControl
+	public partial class SlickLabel : PictureBox
 	{
 		public event HoverStateChanged HoverStateChanged;
 
@@ -32,9 +32,12 @@ namespace SlickControls.Controls
 		{
 			InitializeComponent();
 			Padding = new Padding(5, 3, 5, 3);
+
+			FormDesign.DesignChanged += DesignChanged;
+			Disposed += (s, e) => FormDesign.DesignChanged += DesignChanged;
 		}
 
-		protected override void DesignChanged(FormDesign design) => Invalidate();
+		protected virtual void DesignChanged(FormDesign design) => Invalidate();
 
 		[Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
 		public Func<Color> ActiveColor { get => activeColor; set { activeColor = value; Invalidate(); } }
@@ -43,13 +46,12 @@ namespace SlickControls.Controls
 		public bool Center { get => center; set { center = value; Invalidate(); } }
 
 		private HoverState hoverState = HoverState.Normal;
-		private Image image;
 
 		[Category("Appearance")]
-		public Image Image
+		public new Image Image
 		{
-			get => image;
-			set { image = value; ResizeForAutoSize(); Invalidate(); }
+			get => base.Image;
+			set { base.Image = value; ResizeForAutoSize(); }
 		}
 
 		private bool hideText = false;
@@ -72,11 +74,17 @@ namespace SlickControls.Controls
 			}
 		}
 
+		[EditorBrowsable(EditorBrowsableState.Always)]
+		[Browsable(true)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[Bindable(true)]
+		public override Font Font { get => base.Font; set => base.Font = value; }
+
 		private bool IsPicture
 		{
 			get
 			{
-				try { return Image != null && Image.RawFormat.Guid != ImageFormat.Gif.Guid; }
+				try { return Image != null && !Image.IsAnimated(); }
 				catch { return false; }
 			}
 		}
@@ -138,12 +146,12 @@ namespace SlickControls.Controls
 
 			if (Image != null)
 			{
-                var bmp = IsPicture ? new Bitmap(Image, iconSize, iconSize).Color(fore) : Image;
+            var bmp = IsPicture ? new Bitmap(Image, iconSize, iconSize).Color(fore) : Image;
 
-                if (HideText || string.IsNullOrWhiteSpace(Text))
-					e.Graphics.DrawImage(bmp, new RectangleF((Width - iconSize) / 2, (Height - iconSize) / 2F, iconSize, iconSize));
+            if (HideText || string.IsNullOrWhiteSpace(Text))
+					e.Graphics.DrawImage(bmp, new Rectangle((Width - iconSize) / 2, (int)((Height - iconSize) / 2F), iconSize, iconSize));
 				else
-					e.Graphics.DrawImage(bmp, new RectangleF(Padding.Left, (Height - iconSize) / 2F, iconSize, iconSize));
+					e.Graphics.DrawImage(bmp, new Rectangle(Padding.Left, (int)((Height - iconSize) / 2F), iconSize, iconSize));
 			}
 
 			var stl = new StringFormat()

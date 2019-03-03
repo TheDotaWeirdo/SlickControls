@@ -14,6 +14,7 @@ namespace SlickControls.Controls
 	[DefaultEvent("TabSelected")]
 	public partial class SlickTab : SlickControl
 	{
+		[Category("Action")]
 		public event EventHandler TabSelected;
 
 		private bool hovered;
@@ -36,6 +37,9 @@ namespace SlickControls.Controls
 					AnimationTimer.Start();
 			}
 		}
+
+		[Category("Appearance")]
+		public Image Icon { get; set; }
 
 		public bool Selected
 		{
@@ -87,8 +91,13 @@ namespace SlickControls.Controls
 		{
 			e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
+			var img = Icon?.Color(Selected ? FormDesign.Design.ActiveColor : FormDesign.Design.ForeColor);
+
 			var bnds = e.Graphics.MeasureString(Text, Font);
-			e.Graphics.DrawString(Text, Font, new SolidBrush(Selected ? FormDesign.Design.ActiveColor : FormDesign.Design.ForeColor), (Width - bnds.Width) / 2, (Height - bnds.Height) / 2);
+			e.Graphics.DrawString(Text, Font, new SolidBrush(Selected ? FormDesign.Design.ActiveColor : FormDesign.Design.ForeColor), (Width - bnds.Width - (img == null ? 0 : img.Width + 3)) / 2 + (img == null ? 0 : img.Width + 3), (Height - bnds.Height) / 2);
+
+			if (img != null)
+				e.Graphics.DrawImage(img, new Point((int)(Width - bnds.Width - (img == null ? 0 : img.Width + 3)) / 2, (Height - img.Height) / 2));
 
 			var w = Math.Min(Width, 125) * (float)Perc / 100;
 			e.Graphics.FillRectangle(new SolidBrush(Selected ? FormDesign.Design.ActiveColor : FormDesign.Design.ForeColor), (Width - w) / 2, Height - 1, w, 1);

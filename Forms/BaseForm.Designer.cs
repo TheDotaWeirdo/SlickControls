@@ -201,7 +201,7 @@
 			// 
 			// BaseForm
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.ClientSize = new System.Drawing.Size(615, 356);
 			this.Controls.Add(this.base_P_Container);

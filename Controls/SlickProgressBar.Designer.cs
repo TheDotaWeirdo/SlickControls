@@ -32,7 +32,7 @@
 			// 
 			// SlickProgressBar
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Cursor = System.Windows.Forms.Cursors.Default;
 			this.Name = "SlickProgressBar";
 			this.Size = new System.Drawing.Size(500, 28);

@@ -68,7 +68,6 @@ C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\Slick
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickButton.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickLabel.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickTextBox.resources
-C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.VerticalScroll.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.BaseForm.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.FlatToolStrip.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.MessagePrompt.resources
@@ -167,3 +166,5 @@ C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\Slick
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Panels.PC_Changelog.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Panels.PC_ThemeChanger.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.SlickForm.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickSectionPanel.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickScroll.resources

@@ -314,7 +314,7 @@
 			// B_Cancel
 			// 
 			this.B_Cancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Cancel.ColorShade = null;
 			this.B_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -334,7 +334,7 @@
 			// B_Confirm
 			// 
 			this.B_Confirm.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.B_Confirm.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Confirm.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Confirm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Confirm.ColorShade = null;
 			this.B_Confirm.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -353,7 +353,7 @@
 			// 
 			// SlickColorPicker
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(157)))), ((int)(((byte)(22)))));
 			this.ClientSize = new System.Drawing.Size(700, 314);
 			this.Controls.Add(this.tableLayoutPanel1);

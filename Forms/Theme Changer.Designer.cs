@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Theme_Changer));
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.TLP_Main = new System.Windows.Forms.TableLayoutPanel();
-			this.verticalScroll1 = new SlickControls.Controls.VerticalScroll();
+			this.verticalScroll1 = new SlickControls.Controls.SlickScroll();
 			this.flatButton2 = new SlickControls.Controls.SlickButton();
 			this.UD_BaseTheme = new SlickControls.Controls.SlickDropdown();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -109,7 +109,6 @@
 			// 
 			// verticalScroll1
 			// 
-			this.verticalScroll1.BarColor = null;
 			this.verticalScroll1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.verticalScroll1.LinkedControl = null;
 			this.verticalScroll1.Location = new System.Drawing.Point(421, 0);
@@ -122,7 +121,7 @@
 			// flatButton2
 			// 
 			this.flatButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.flatButton2.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.flatButton2.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.flatButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.flatButton2.ColorShade = null;
 			this.flatButton2.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -358,7 +357,7 @@
 			// 
 			// Theme_Changer
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(445, 490);
 			this.Font = new System.Drawing.Font("Century Gothic", 9.75F);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
@@ -384,7 +383,7 @@
 		#endregion
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.TableLayoutPanel TLP_Main;
-		private SlickControls.Controls.VerticalScroll verticalScroll1;
+		private SlickControls.Controls.SlickScroll verticalScroll1;
 		private SlickControls.Controls.SlickButton flatButton2;
 		internal SlickControls.Controls.SlickDropdown UD_BaseTheme;
 		private System.Windows.Forms.Panel panel1;

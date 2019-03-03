@@ -90,7 +90,7 @@
 			this.base_PB_Icon.TabIndex = 9;
 			this.base_PB_Icon.TabStop = false;
 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.ClientSize = new System.Drawing.Size(600, 350);
 			this.Controls.Add(this.base_P_Container);

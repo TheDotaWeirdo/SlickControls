@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PC_ThemeChanger));
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.verticalScroll1 = new SlickControls.Controls.VerticalScroll();
+			this.verticalScroll1 = new SlickControls.Controls.SlickScroll();
 			this.FLP_Pickers = new System.Windows.Forms.FlowLayoutPanel();
 			this.CP_Back = new SlickControls.Controls.ColorPicker();
 			this.CP_Text = new SlickControls.Controls.ColorPicker();
@@ -70,7 +70,6 @@
 			// 
 			// verticalScroll1
 			// 
-			this.verticalScroll1.BarColor = null;
 			this.verticalScroll1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.verticalScroll1.LinkedControl = this.FLP_Pickers;
 			this.verticalScroll1.Location = new System.Drawing.Point(774, 0);
@@ -320,7 +319,7 @@
 			// B_Reset
 			// 
 			this.B_Reset.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Reset.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Reset.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Reset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Reset.ColorShade = null;
 			this.B_Reset.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -338,11 +337,10 @@
 			// 
 			// PC_ThemeChanger
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "PC_ThemeChanger";
 			this.Padding = new System.Windows.Forms.Padding(5, 30, 0, 0);
-			this.ShowBack = true;
 			this.Text = "Theme Changer";
 			this.Load += new System.EventHandler(this.Theme_Changer_Load);
 			this.Resize += new System.EventHandler(this.Theme_Changer_Resize);
@@ -377,7 +375,7 @@
 		private Controls.ColorPicker CP_Green;
 		private Controls.ColorPicker CP_Yellow;
 		internal Controls.SlickDropdown UD_BaseTheme;
-		private Controls.VerticalScroll verticalScroll1;
+		private Controls.SlickScroll verticalScroll1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private Controls.SlickButton B_Reset;
 	}

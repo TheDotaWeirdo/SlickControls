@@ -1,4 +1,6 @@
-﻿namespace SlickControls.Controls
+﻿using System.Windows.Forms;
+
+namespace SlickControls.Controls
 {
 	partial class SlickCheckbox
 	{
@@ -32,7 +34,6 @@
 			// 
 			// SlickCheckbox
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Image = global::SlickControls.Properties.Resources.Tiny_ToggleOff;
 			this.Name = "SlickCheckbox";
 			this.Size = new System.Drawing.Size(92, 22);

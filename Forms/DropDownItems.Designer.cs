@@ -30,7 +30,7 @@
 		{
 			this.panel = new System.Windows.Forms.Panel();
 			this.P_Items = new System.Windows.Forms.Panel();
-			this.verticalScroll1 = new SlickControls.Controls.VerticalScroll();
+			this.verticalScroll1 = new SlickControls.Controls.SlickScroll();
 			this.panel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -57,8 +57,7 @@
 			// 
 			// verticalScroll1
 			// 
-			this.verticalScroll1.AutoResize = false;
-			this.verticalScroll1.BarColor = null;
+			this.verticalScroll1.ShowHandle = false;
 			this.verticalScroll1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.verticalScroll1.LinkedControl = this.P_Items;
 			this.verticalScroll1.Location = new System.Drawing.Point(214, 0);
@@ -69,7 +68,7 @@
 			// 
 			// DropDownItems
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(162)))), ((int)(((byte)(229)))));
 			this.ClientSize = new System.Drawing.Size(220, 250);
 			this.Controls.Add(this.panel);
@@ -91,7 +90,7 @@
 		#endregion
 
 		private System.Windows.Forms.Panel panel;
-		private Controls.VerticalScroll verticalScroll1;
+		private Controls.SlickScroll verticalScroll1;
 		private System.Windows.Forms.Panel P_Items;
 	}
 }

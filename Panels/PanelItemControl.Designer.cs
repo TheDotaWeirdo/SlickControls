@@ -32,7 +32,7 @@
 			// 
 			// PanelItemControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
 			this.Margin = new System.Windows.Forms.Padding(0);

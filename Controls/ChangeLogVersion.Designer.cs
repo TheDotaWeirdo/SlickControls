@@ -32,7 +32,7 @@
 			// 
 			// ChangeLogVersion
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
 			this.Name = "ChangeLogVersion";
 			this.Size = new System.Drawing.Size(325, 103);

@@ -34,8 +34,8 @@
 			this.P_LeftTabs = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.P_VersionInfo = new System.Windows.Forms.Panel();
-			this.verticalScroll1 = new SlickControls.Controls.VerticalScroll();
-			this.verticalScroll2 = new SlickControls.Controls.VerticalScroll();
+			this.verticalScroll1 = new SlickControls.Controls.SlickScroll();
+			this.verticalScroll2 = new SlickControls.Controls.SlickScroll();
 			this.P_Spacer_2 = new System.Windows.Forms.Panel();
 			this.TLP_Mainzs.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -116,7 +116,6 @@
 			// 
 			// verticalScroll1
 			// 
-			this.verticalScroll1.BarColor = null;
 			this.verticalScroll1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.verticalScroll1.LinkedControl = this.P_VersionInfo;
 			this.verticalScroll1.Location = new System.Drawing.Point(779, 30);
@@ -126,9 +125,7 @@
 			this.verticalScroll1.TabIndex = 14;
 			// 
 			// verticalScroll2
-			// 
-			this.verticalScroll2.BarColor = null;
-			this.verticalScroll2.Dock = System.Windows.Forms.DockStyle.Left;
+			// 			this.verticalScroll2.Dock = System.Windows.Forms.DockStyle.Left;
 			this.verticalScroll2.LinkedControl = this.P_LeftTabs;
 			this.verticalScroll2.Location = new System.Drawing.Point(389, 62);
 			this.verticalScroll2.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
@@ -149,13 +146,12 @@
 			// 
 			// PC_Changelog
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.verticalScroll2);
 			this.Controls.Add(this.verticalScroll1);
 			this.Controls.Add(this.TLP_Mainzs);
 			this.Name = "PC_Changelog";
 			this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
-			this.ShowBack = true;
 			this.Text = "Change Log";
 			this.Resize += new System.EventHandler(this.PC_Changelog_Resize);
 			this.Controls.SetChildIndex(this.TLP_Mainzs, 0);
@@ -179,8 +175,8 @@
 		private System.Windows.Forms.Panel P_LeftTabs;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel P_VersionInfo;
-		private Controls.VerticalScroll verticalScroll1;
-		private Controls.VerticalScroll verticalScroll2;
+		private Controls.SlickScroll verticalScroll1;
+		private Controls.SlickScroll verticalScroll2;
 		private System.Windows.Forms.Panel P_Spacer_2;
 	}
 }

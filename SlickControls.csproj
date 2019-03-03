@@ -94,6 +94,30 @@
     <Compile Include="Controls\DropDownItem.Designer.cs">
       <DependentUpon>DropDownItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SlickLabelComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickLabelComponent.Designer.cs">
+      <DependentUpon>SlickLabelComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlickIconComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickIconComponent.Designer.cs">
+      <DependentUpon>SlickIconComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlickScroll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickScroll.Designer.cs">
+      <DependentUpon>SlickScroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlickSectionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickSectionPanel.Designer.cs">
+      <DependentUpon>SlickSectionPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SlickTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,7 +149,7 @@
       <DependentUpon>SlickProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SlickCheckbox.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SlickCheckbox.Designer.cs">
       <DependentUpon>SlickCheckbox.cs</DependentUpon>
@@ -164,13 +188,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SlickLabel.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SlickLabel.Designer.cs">
       <DependentUpon>SlickLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SlickRadioButton.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SlickRadioButton.Designer.cs">
       <DependentUpon>SlickRadioButton.cs</DependentUpon>
@@ -199,12 +223,12 @@
     <Compile Include="Controls\TopIcon.Designer.cs">
       <DependentUpon>TopIcon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VerticalScroll.cs">
+    <None Include="Controls\VerticalScroll.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\VerticalScroll.Designer.cs">
+    </None>
+    <None Include="Controls\VerticalScroll.Designer.cs">
       <DependentUpon>VerticalScroll.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Enums\HoverState.cs" />
     <Compile Include="Enums\TextStyle.cs" />
     <Compile Include="Enums\ValidationType.cs" />
@@ -337,6 +361,12 @@
     <EmbeddedResource Include="Controls\HorizontalScroll.resx">
       <DependentUpon>HorizontalScroll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SlickScroll.resx">
+      <DependentUpon>SlickScroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SlickSectionPanel.resx">
+      <DependentUpon>SlickSectionPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SlickTab.resx">
       <DependentUpon>SlickTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -373,9 +403,9 @@
     <EmbeddedResource Include="Controls\SlickTile.resx">
       <DependentUpon>SlickTile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\VerticalScroll.resx">
+    <None Include="Controls\VerticalScroll.resx">
       <DependentUpon>VerticalScroll.cs</DependentUpon>
-    </EmbeddedResource>
+    </None>
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -593,6 +623,12 @@
       <Project>{50ea98fd-47b0-40bc-a51e-3defb2525f2c}</Project>
       <Name>Extensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notif_Long.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notif_Quick.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

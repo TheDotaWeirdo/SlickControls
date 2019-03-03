@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,7 +16,7 @@ namespace SlickControls.Panels
 
 		private TableLayoutPanel base_TLP_PanelItems;
 		private Image formIcon;
-		private List<PanelContent> PanelHistory = new List<PanelContent>();
+		private List<PanelContent> panelHistory = new List<PanelContent>();
 		private PanelItem[] sidebarItems = new PanelItem[0];
 
 		#endregion Private Fields
@@ -45,6 +46,8 @@ namespace SlickControls.Panels
 				GenerateTabs();
 			}
 		}
+
+		public IEnumerable<PanelContent> PanelHistory => panelHistory;
 
 		#endregion Public Properties
 
@@ -88,11 +91,11 @@ namespace SlickControls.Panels
 
 		public void PushBack(bool dispose = true)
 		{
-			var panel = PanelHistory.LastOrDefault();
+			var panel = panelHistory.LastOrDefault();
 
 			if (panel != null)
 			{
-				PanelHistory.Remove(panel);
+				panelHistory.Remove(panel);
 				SetPanel(panel.PanelItem, panel, dispose, false);
 			}
 		}
@@ -101,7 +104,7 @@ namespace SlickControls.Panels
 		{
 			if (CurrentPanel != null)
 			{
-				PanelHistory.Add(CurrentPanel);
+				panelHistory.Add(CurrentPanel);
 				base_P_PanelContent.Controls.Remove(CurrentPanel);
 				CurrentPanel = null;
 			}
@@ -113,7 +116,7 @@ namespace SlickControls.Panels
 		{
 			if (CurrentPanel != null)
 			{
-				PanelHistory.Add(CurrentPanel);
+				panelHistory.Add(CurrentPanel);
 				base_P_PanelContent.Controls.Remove(CurrentPanel);
 				CurrentPanel = null;
 			}
@@ -128,8 +131,8 @@ namespace SlickControls.Panels
 
 			if (clearHistory)
 			{
-				PanelHistory?.ForEach(x => x.TryInvoke(x.Dispose));
-				PanelHistory?.Clear();
+				panelHistory?.ForEach(x => x.TryInvoke(x.Dispose));
+				panelHistory?.Clear();
 			}
 
 			base_P_PanelContent.SuspendDrawing();
@@ -189,7 +192,10 @@ namespace SlickControls.Panels
 				return;
 
 			if (clearHistory)
-				PanelHistory?.Clear();
+			{
+				panelHistory?.ForEach(x => x.TryInvoke(x.Dispose));
+				panelHistory?.Clear();
+			}
 
 			base_P_PanelContent.SuspendDrawing();
 
@@ -250,6 +256,7 @@ namespace SlickControls.Panels
 			base_P_PanelContent.BackColor = base_TLP_TopButtons.BackColor = design.BackColor;
 			base_P_Content.BackColor = design.MenuColor;
 			base_P_Side.ForeColor = design.LabelColor;
+			base_P_SideControls.ForeColor = design.LabelColor.MergeColor(design.ID.If(0, design.AccentColor, design.MenuColor), 80);
 
 			if (base_TLP_PanelItems != null)
 				foreach (var item in base_TLP_PanelItems.Controls.ThatAre<Panel>())
@@ -296,13 +303,21 @@ namespace SlickControls.Panels
 
 			if (keyData == Keys.Escape && CancelButton == null)
 			{
-				if (CurrentPanel?.ShowBack ?? false)
+				if (PanelHistory.Any())
 				{ PushBack(); return true; }
 				else if (WindowState == FormWindowState.Maximized)
 				{ WindowState = FormWindowState.Normal; return true; }
 			}
 
 			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+		protected override void WndProc(ref Message m)
+		{
+			base.WndProc(ref m);
+
+			if (m.Msg == 0x210 && m.WParam == (IntPtr)0x1020b && PanelHistory.Any())
+				PushBack();
 		}
 
 		#endregion Protected Methods

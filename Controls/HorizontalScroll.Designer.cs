@@ -45,7 +45,7 @@
 			// 
 			// HorizontalScroll
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.Bar);
 			this.Name = "HorizontalScroll";
 			this.Size = new System.Drawing.Size(506, 15);

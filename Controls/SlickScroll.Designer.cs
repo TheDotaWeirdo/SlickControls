@@ -1,6 +1,6 @@
 ﻿namespace SlickControls.Controls
 {
-	partial class VerticalScroll
+	partial class SlickScroll
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -28,35 +28,35 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Bar = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.Bar)).BeginInit();
+			this.Bar = new System.Windows.Forms.Control();
 			this.SuspendLayout();
 			// 
 			// Bar
 			// 
-			this.Bar.Location = new System.Drawing.Point(1, 0);
-			this.Bar.Margin = new System.Windows.Forms.Padding(0);
-			this.Bar.MaximumSize = new System.Drawing.Size(12, 9999);
+			this.Bar.Location = new System.Drawing.Point(0, 0);
 			this.Bar.Name = "Bar";
-			this.Bar.Size = new System.Drawing.Size(10, 100);
+			this.Bar.Size = new System.Drawing.Size(0, 0);
 			this.Bar.TabIndex = 0;
-			this.Bar.TabStop = false;
 			// 
-			// VerticalScroll
+			// SlickScroll
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Controls.Add(this.Bar);
-			this.Name = "VerticalScroll";
-			this.Size = new System.Drawing.Size(12, 285);
-			this.Load += new System.EventHandler(this.VerticalScroll_Load);
-			this.Resize += new System.EventHandler(this.HorizontalScroll_Resize);
-			((System.ComponentModel.ISupportInitialize)(this.Bar)).EndInit();
+			this.Name = "SlickScroll";
+			this.Size = new System.Drawing.Size(12, 137);
+			this.Load += new System.EventHandler(this.LinkedControl_Resize);
+			this.Paint += new System.Windows.Forms.PaintEventHandler(this.SlickScroll_Paint);
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SlickScroll_MouseDown);
+			this.MouseEnter += new System.EventHandler(this.SlickScroll_MouseEnter);
+			this.MouseLeave += new System.EventHandler(this.SlickScroll_MouseLeave);
+			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SlickScroll_MouseMove);
+			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SlickScroll_MouseUp);
+			this.Resize += new System.EventHandler(this.SlickScroll_Resize);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.PictureBox Bar;
+		private System.Windows.Forms.Control Bar;
 	}
 }

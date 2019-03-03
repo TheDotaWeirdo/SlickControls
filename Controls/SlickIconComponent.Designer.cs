@@ -1,8 +1,8 @@
 ﻿namespace SlickControls.Controls
 {
-	partial class SlickDropdown
+	partial class SlickIconComponent
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
@@ -22,24 +22,13 @@
 
 		#region Component Designer generated code
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// SlickDropdown
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.LabelText = "Dropdown";
-			this.Name = "SlickDropdown";
-			this.IconClicked += new System.EventHandler(this.PB_Arrow_Click);
-			this.Load += new System.EventHandler(this.ActiveDropDown_Load);
-			this.ResumeLayout(false);
-			this.PerformLayout();
-
+			components = new System.ComponentModel.Container();
 		}
 
 		#endregion

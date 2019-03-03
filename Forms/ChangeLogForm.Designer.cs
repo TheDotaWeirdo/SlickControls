@@ -37,8 +37,8 @@
 			this.P_LeftTabs = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.P_VersionInfo = new System.Windows.Forms.Panel();
-			this.verticalScroll1 = new SlickControls.Controls.VerticalScroll();
-			this.verticalScroll2 = new SlickControls.Controls.VerticalScroll();
+			this.verticalScroll1 = new SlickControls.Controls.SlickScroll();
+			this.verticalScroll2 = new SlickControls.Controls.SlickScroll();
 			this.base_P_Content.SuspendLayout();
 			this.TLP_Mainzs.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.B_Done)).BeginInit();
@@ -106,7 +106,7 @@
 			// B_Done
 			// 
 			this.B_Done.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.B_Done.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Done.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Done.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Done.ColorShade = null;
 			this.TLP_Mainzs.SetColumnSpan(this.B_Done, 2);
@@ -172,7 +172,6 @@
 			// 
 			// verticalScroll1
 			// 
-			this.verticalScroll1.BarColor = null;
 			this.verticalScroll1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.verticalScroll1.LinkedControl = this.P_LeftTabs;
 			this.verticalScroll1.Location = new System.Drawing.Point(0, 22);
@@ -183,7 +182,6 @@
 			// 
 			// verticalScroll2
 			// 
-			this.verticalScroll2.BarColor = null;
 			this.verticalScroll2.Dock = System.Windows.Forms.DockStyle.Right;
 			this.verticalScroll2.LinkedControl = this.P_VersionInfo;
 			this.verticalScroll2.Location = new System.Drawing.Point(397, 1);
@@ -194,7 +192,7 @@
 			// 
 			// ChangeLogForm
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
@@ -223,7 +221,7 @@
 		private System.Windows.Forms.Panel P_LeftTabs;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Panel panel2;
-		private Controls.VerticalScroll verticalScroll1;
-		private Controls.VerticalScroll verticalScroll2;
+		private Controls.SlickScroll verticalScroll1;
+		private Controls.SlickScroll verticalScroll2;
 	}
 }

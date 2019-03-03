@@ -28,13 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.PictureBox = new System.Windows.Forms.PictureBox();
+			this.PictureBox = new SlickControls.Controls.DBPictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// PictureBox
 			// 
-			this.PictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PictureBox.Location = new System.Drawing.Point(0, 0);
 			this.PictureBox.Name = "PictureBox";
 			this.PictureBox.Size = new System.Drawing.Size(300, 70);
@@ -46,10 +45,10 @@
 			// 
 			// NotificationForm
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 70);
 			this.Controls.Add(this.PictureBox);
-			this.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "NotificationForm";
 			this.ShowIcon = false;
@@ -63,6 +62,6 @@
 
 		#endregion
 
-		public System.Windows.Forms.PictureBox PictureBox;
+		public Controls.DBPictureBox PictureBox;
 	}
 }

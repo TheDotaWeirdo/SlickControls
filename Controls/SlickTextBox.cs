@@ -126,6 +126,8 @@ namespace SlickControls.Controls
 			}
 		}
 
+		public bool ReadOnly { get => TB.ReadOnly; set => TB.ReadOnly = false; }
+
 		public new void Select() => TB.Select();
 
 		public void Select(int start, int length) => TB.Select(start, length);

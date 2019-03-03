@@ -34,7 +34,7 @@ namespace SlickControls.Controls
 			// 
 			// SlickTileButton
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "SlickTileButton";

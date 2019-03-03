@@ -6,6 +6,7 @@ using System.Threading;
 using SlickControls.Controls;
 using Extensions;
 using System.Drawing;
+using System.Linq;
 using SlickControls.Enums;
 
 namespace SlickControls.Panels
@@ -14,7 +15,6 @@ namespace SlickControls.Panels
 	{
 		private BasePanelForm form;
 		private Thread LoadThread;
-		private bool shouldLoad;
 
 		public PanelContent() : this(false)
 		{ }
@@ -26,7 +26,7 @@ namespace SlickControls.Panels
 			DoubleBuffered = true;
 
 			if (!DesignMode)
-				DataLoaded = !(shouldLoad = load);
+				DataLoaded = !load;
 
 			LoadingTimer.Elapsed += LoadingTimer_Elapsed;
 		}
@@ -74,9 +74,6 @@ namespace SlickControls.Panels
 
 		[Browsable(false)]
 		public PanelItem PanelItem { get; internal set; }
-
-		[Category("Behavior"), DefaultValue(false)]
-		public bool ShowBack { get; set; } = false;
 
 		public virtual bool CanExit()
 		{
@@ -132,11 +129,11 @@ namespace SlickControls.Panels
 
 			base_Text.BringToFront();
 
-			if (ShowBack)
+			if (Form?.PanelHistory?.Any(x => x != this) ?? false)
 			{
 				base_Text.Image = Properties.Resources.Icon_ArrowLeft;
 				base_Text.Enabled = true;
-				SlickTip.SetTo(base_Text, "Go Back");
+				SlickTip.SetTo(base_Text, "Go Back to " + Form.PanelHistory.Last().Text);
 			}
 
 			base.OnCreateControl();

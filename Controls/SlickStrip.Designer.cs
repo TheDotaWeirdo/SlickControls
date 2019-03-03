@@ -32,7 +32,7 @@
 			// 
 			// SlickStrip
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "SlickStrip";

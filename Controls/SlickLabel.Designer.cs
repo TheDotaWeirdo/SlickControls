@@ -32,9 +32,7 @@
             // 
             // SlickLabel
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.DoubleBuffered = true;
             this.Name = "SlickLabel";
             this.Size = new System.Drawing.Size(0, 0);

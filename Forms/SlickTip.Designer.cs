@@ -32,7 +32,7 @@
 			// 
 			// SlickTip
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(143, 21);
 			this.ControlBox = false;
 			this.Enabled = false;

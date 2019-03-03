@@ -107,7 +107,7 @@ namespace SlickControls.Forms
 			// B_Cancel
 			// 
 			this.B_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_Cancel.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -127,7 +127,7 @@ namespace SlickControls.Forms
 			// B_Ignore
 			// 
 			this.B_Ignore.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Ignore.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Ignore.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Ignore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Ignore.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_Ignore.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -147,7 +147,7 @@ namespace SlickControls.Forms
 			// B_Retry
 			// 
 			this.B_Retry.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Retry.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Retry.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Retry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Retry.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_Retry.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -167,7 +167,7 @@ namespace SlickControls.Forms
 			// B_Abort
 			// 
 			this.B_Abort.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Abort.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Abort.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Abort.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Abort.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_Abort.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -187,7 +187,7 @@ namespace SlickControls.Forms
 			// B_OK
 			// 
 			this.B_OK.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_OK.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_OK.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_OK.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_OK.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -207,7 +207,7 @@ namespace SlickControls.Forms
 			// B_No
 			// 
 			this.B_No.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_No.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_No.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_No.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_No.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_No.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -227,7 +227,7 @@ namespace SlickControls.Forms
 			// B_Yes
 			// 
 			this.B_Yes.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Yes.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.B_Yes.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.B_Yes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.B_Yes.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.B_Yes.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
@@ -337,7 +337,7 @@ namespace SlickControls.Forms
 			// 
 			// MessagePrompt
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.ClientSize = new System.Drawing.Size(385, 216);
 			this.Controls.Add(this.base_P_Container);

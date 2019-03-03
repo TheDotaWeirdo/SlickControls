@@ -17,10 +17,9 @@ namespace SlickControls.Controls
 			InitializeComponent();
 			Click += (s, e) => Checked = !Checked;
 			Cursor = System.Windows.Forms.Cursors.Hand;
-			Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
 		}
 
-		public EventHandler CheckChanged;
+		public event EventHandler CheckChanged;
 		private bool @checked;
 		private DisableIdentifier checkIdentifier = new DisableIdentifier();
 
@@ -35,13 +34,14 @@ namespace SlickControls.Controls
 			{
 				if (@checked != value && !checkIdentifier.Disabled)
 				{
+					if (!value && @checked && RadioGroup.All(x => x == this || !x.Checked))
+						return;
+
 					@checked = value;
 					checkIdentifier.Disable();
 					CheckChanged?.Invoke(this, new EventArgs());
 					checkIdentifier.Enable();
 				}
-				else
-					@checked = value;
 
 				if (checkIdentifier.Disabled)
 					return;
@@ -55,15 +55,7 @@ namespace SlickControls.Controls
 		}
 
 		public IEnumerable<SlickRadioButton> RadioGroup
-		{
-			get
-			{
-				if (CustomGroup?.Any() ?? false)
-					return CustomGroup;
-
-				return Parent.Controls.ThatAre<SlickRadioButton>();
-			}
-		}
+			=> CustomGroup ?? Parent.Controls.ThatAre<SlickRadioButton>();
 
 		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public IEnumerable<SlickRadioButton> CustomGroup { get; set; }

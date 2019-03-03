@@ -30,9 +30,10 @@ namespace SlickControls.Forms
 				TLP_Container.Controls.Add(new SlickStrip(item, hideImg) { Dock = DockStyle.Top });
 
 			BackColor = FormDesign.Design.AccentColor;
-			form.CurrentFormState = FormState.ForcedFocused;
+			if (form != null)
+				form.CurrentFormState = FormState.ForcedFocused;
 
-			this.Disposed += FlatToolStrip_Disposed;
+			Disposed += FlatToolStrip_Disposed;
 
 			if (Cursor.Position.Y + Height > SystemInformation.VirtualScreen.Height)
 			{
@@ -50,8 +51,11 @@ namespace SlickControls.Forms
 
 		private void FlatToolStrip_Disposed(object sender, EventArgs e)
 		{
-			form.Focus();
-			form.CurrentFormState = FormState.NormalFocused;
+			if (form != null)
+			{
+				form.Focus();
+				form.CurrentFormState = FormState.NormalFocused;
+			}
 		}
 
 		private void FlatToolStrip_Leave(object sender, EventArgs e)

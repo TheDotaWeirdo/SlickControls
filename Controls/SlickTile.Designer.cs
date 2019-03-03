@@ -32,7 +32,7 @@
 			// 
 			// PanelItem
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Name = "PanelItem";
 			this.Size = new System.Drawing.Size(175, 25);
 			this.ResumeLayout(false);

@@ -33,4 +33,13 @@ namespace SlickControls.Controls
 			ResizeRedraw = true;
 		}
 	}
+
+	public class DBPictureBox : PictureBox
+	{
+		public DBPictureBox()
+		{
+			DoubleBuffered = true;
+			ResizeRedraw = true;
+		}
+	}
 }

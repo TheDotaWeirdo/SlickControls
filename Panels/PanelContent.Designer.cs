@@ -35,7 +35,6 @@
 			// 
 			this.base_Text.ActiveColor = null;
 			this.base_Text.AutoSize = true;
-			this.base_Text.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.base_Text.Center = false;
 			this.base_Text.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.base_Text.Enabled = false;
@@ -54,7 +53,7 @@
 			// 
 			// PanelContent
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
 			this.Controls.Add(this.base_Text);
 			this.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
