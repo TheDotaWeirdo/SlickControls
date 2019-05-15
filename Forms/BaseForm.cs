@@ -12,13 +12,17 @@ namespace SlickControls.Forms
 
 		private Image formIcon;
 		private bool showControls = false;
-		private bool showSpacer = true;
 
-		#endregion Private Fields
+        public new string Text { get => base_L_Title.Text; set => base.Text = base_L_Title.Text = value; }
 
-		#region Public Constructors
+        [Category("Appearance"), DefaultValue(false)]
+        public bool SeemlessBar { get; set; }
 
-		public BaseForm() : this(false)
+        #endregion Private Fields
+
+        #region Public Constructors
+
+        public BaseForm() : this(false)
 		{ }
 
 		public BaseForm(bool initialized)
@@ -56,40 +60,48 @@ namespace SlickControls.Forms
 			}
 		}
 
-		[Category("Behavior"), EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible), Bindable(true)]
-		public bool ShowTopSpacer { get => base_P_Top_Spacer.Visible = showSpacer; set => base_P_Top_Spacer.Visible = showSpacer = value; }
-
 		protected new bool MaximizeBox { get => base.MaximizeBox; set => base_B_Max.Visible = base.MaximizeBox = value; }
 
 		protected new bool MinimizeBox { get => base.MinimizeBox; set => base_B_Min.Visible = base.MinimizeBox = value; }
 
-		#endregion Properties
+        #endregion Properties
 
-		#region General Methods
+        #region General Methods
 
-		protected override void DesignChanged(FormDesign design)
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+
+            ShowControls = ShowControls;
+        }
+
+        protected override void DesignChanged(FormDesign design)
 		{
 			base.DesignChanged(design);
 
-			base_P_Top.BackColor = base_P_Controls.BackColor = design.MenuColor;
-			base_L_Title.ForeColor = base_P_Controls.ForeColor = design.MenuForeColor;
+			base_P_Top.BackColor = base_P_Controls.BackColor = base_P_Top_Spacer.BackColor = SeemlessBar ? design.BackColor : design.MenuColor;
+			base_L_Title.ForeColor = base_P_Controls.ForeColor = SeemlessBar ? design.ForeColor : design.MenuForeColor;
 			base_P_Content.BackColor = design.BackColor;
-			ForeColor = design.ForeColor;
-			base_P_Top_Spacer.BackColor = design.AccentColor;
-
-			base_B_Close.Color(design.RedColor);
-			base_B_Max.Color(design.YellowColor);
-			base_B_Min.Color(design.GreenColor);
-			base_PB_Icon.Color(design.MenuForeColor);
+			base_PB_Icon.Color(SeemlessBar ? design.ForeColor : design.MenuForeColor);
 		}
 
 		private void BaseForm_Load(object sender, EventArgs e)
 		{
-			foreach (Control ctrl in base_P_Controls.Controls)
-			{
-				if (ctrl is Panel || ctrl is Label)
-					ctrl.MouseDown += Form_MouseDown;
-			}
+            recurse(base_P_Controls);
+
+            void recurse(Control ctrl)
+            {
+                if (ctrl is Panel || ctrl is UserControl)
+                {
+                    ctrl.MouseDown += Form_MouseDown;
+
+                    foreach (var item in ctrl.Controls.ThatAre<Panel>())
+                        recurse(item);
+
+                    foreach (var item in ctrl.Controls.ThatAre<Label>())
+                        item.MouseDown += Form_MouseDown;
+                } 
+            }
 		}
 
 		private void L_Title_TextChanged(object sender, EventArgs e)
@@ -117,23 +129,19 @@ namespace SlickControls.Forms
 			LoadingTimer.Stop();
 			perc = -100;
 
-			if (base_P_Top_Spacer.InvokeRequired)
-				base_P_Top_Spacer.Invoke(new Action(base_P_Top_Spacer.Refresh));
-			else
-				base_P_Top_Spacer.Refresh();
-		}
+            base_P_Top_Spacer.TryInvoke(base_P_Top_Spacer.Invalidate);
+        }
 
 		private void LoadingTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
 			try
 			{
 				perc += 3;
+
 				if (perc >= 100)
 					perc = -20;
-				if (base_P_Top_Spacer.InvokeRequired)
-					base_P_Top_Spacer.Invoke(new Action(base_P_Top_Spacer.Refresh));
-				else
-					base_P_Top_Spacer.Refresh();
+
+                base_P_Top_Spacer.TryInvoke(base_P_Top_Spacer.Invalidate);
 			}
 			catch { }
 		}

@@ -15,8 +15,6 @@ namespace SlickControls.Controls
 {
 	public partial class SlickDropdown : SlickTextBox
 	{
-		private Func<object, string> _conversion;
-
 		private object[] _items;
 
 		private DropDownItems DropDownItems;
@@ -32,9 +30,17 @@ namespace SlickControls.Controls
 			TB.MouseDoubleClick += TB_MouseDoubleClick;
 		}
 
+		protected override void DesignChanged(FormDesign design)
+		{
+			base.DesignChanged(design);
+
+			if (!DesignMode && (Items?.Length ?? 0) == 0)
+				Image = FormDesign.Loader;
+		}
+
 		private void TB_MouseWheel(object sender, MouseEventArgs e)
 		{
-			if (SelectedItem != null)
+			if (SelectedItem != null && !ReadOnly)
 			{
 				if (e.Delta > 0)
 					Text = Items[Math.Max(0, Items.ToList().IndexOf(SelectedItem) - 1)].If(x => Conversion == null, x => x.ToString(), x => Conversion(x));
@@ -47,7 +53,7 @@ namespace SlickControls.Controls
 		public new event EventHandler TextChanged;
 
 		[Category("Data")]
-		public Func<object, string> Conversion { get => _conversion; set => _conversion = value; }
+		public Func<object, string> Conversion { get; set; }
 
 		[Category("Data")]
 		public object[] Items { get => _items; set { _items = value; Image = Properties.Resources.ArrowDown; } }
@@ -56,28 +62,34 @@ namespace SlickControls.Controls
 		{
 			get
 			{
-				return Items?.Where(x => Text == (Conversion == null ? x.ToString() : Conversion(x))).FirstOrDefault();
+				return Items?.FirstOrDefault(x => Text == (Conversion == null ? x.ToString() : Conversion(x)));
 			}
 			set
 			{
 				Text = value == null ? "" : Conversion == null ? value.ToString() : Conversion(value);
 			}
 		}
-
-		private bool required;
-
-		[Category("Behavior")]
-		public bool Required { get => required; set => required = value; }
 		
 		[EditorBrowsable(EditorBrowsableState.Always)]
 		[Browsable(true)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		[Bindable(true)]
 		public override string Text { get => base.Text; set { base.Text = TB.Text = value; TextChanged?.Invoke(this, new EventArgs()); } }
-				
+
+		public override bool ValidInput
+		{
+			get
+			{
+				if (Required && Items != null && Items.Any() && Validation == Enums.ValidationType.None)
+					return SelectedItem != null;
+
+				return base.ValidInput;
+			}
+		}
+
 		private void ActiveDropDown_Load(object sender, EventArgs e)
 		{
-			if ((Items?.Length ?? 0) == 0)
+			if (!DesignMode && (Items?.Length ?? 0) == 0)
 				Image = FormDesign.Loader;
 
 			var frm = FindForm();
@@ -125,7 +137,7 @@ namespace SlickControls.Controls
 		{
 			if (DropDownItems == null)
 			{
-				if (Items != null)
+				if (Items != null && !ReadOnly)
 				{
 					P_Bar.BackColor = FormDesign.Design.ActiveColor;
 					DropDownItems = new DropDownItems(Items, Conversion)
@@ -134,7 +146,8 @@ namespace SlickControls.Controls
 						MaximumSize = new Size(Width, 9999),
 						MinimumSize = new Size(Width, 0)
 					};
-					DropDownItems.ItemSelected += (item) => { Text = Conversion == null ? item.ToString() : Conversion(item); DropDownItems = null; };
+                    DropDownItems.Height = Math.Min(DropDownItems.Height, SystemInformation.VirtualScreen.Height - DropDownItems.Top - 15);
+                    DropDownItems.ItemSelected += (item) => { Text = Conversion == null ? item.ToString() : Conversion(item); DropDownItems = null; };
 					DropDownItems.FormClosed += (s, ea) => Image = Properties.Resources.ArrowDown.Color(P_Bar.BackColor);
 					DropDownItems.Show();
 					Image = Properties.Resources.ArrowUp.Color(P_Bar.BackColor);
@@ -259,7 +272,8 @@ namespace SlickControls.Controls
 								MaximumSize = new Size(Width, 9999),
 								MinimumSize = new Size(Width, 0)
 							};
-							DropDownItems.ItemSelected += (item) => { Text = Conversion == null ? item.ToString() : Conversion(item); DropDownItems = null; };
+                            DropDownItems.Height = Math.Min(DropDownItems.Height, SystemInformation.VirtualScreen.Height - DropDownItems.Top - 15);
+                            DropDownItems.ItemSelected += (item) => { Text = Conversion == null ? item.ToString() : Conversion(item); DropDownItems = null; };
 							DropDownItems.FormClosed += (s, ea) => Image = Properties.Resources.ArrowDown.Color(P_Bar.BackColor);
 							DropDownItems.Show();
 							Image = Properties.Resources.ArrowUp.Color(P_Bar.BackColor);

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Interop;
 using Extensions;
 using SlickControls.Classes;
 using SlickControls.Panels;
@@ -47,6 +49,11 @@ namespace SlickControls.Forms
 		public SlickForm()
 		{
 			InitializeComponent();
+
+			var md = new MouseDetector();
+			md.MouseMove += Md_MouseMove;
+
+			Disposed += (s,e) => md.MouseMove -= Md_MouseMove;
 		}
 
 		#endregion Public Constructors
@@ -283,5 +290,96 @@ namespace SlickControls.Forms
 		}
 
 		#endregion Move/Resize
+
+		#region Taskbar
+
+		private void Md_MouseMove(object sender, Point p)
+		{
+			if (WindowState == FormWindowState.Maximized)
+			{
+				var show = false;
+
+				switch (CurrentTaskbarLocation)
+				{
+					case TaskbarLocation.Top:
+						show = p.Y < 5;
+						break;
+					case TaskbarLocation.Left:
+						show = p.X < 5;
+						break;
+					case TaskbarLocation.Bottom:
+						show = p.Y > Screen.PrimaryScreen.Bounds.Height - 5;
+						break;
+					case TaskbarLocation.Right:
+						show = p.X > Screen.PrimaryScreen.Bounds.Width - 5;
+						break;
+					case TaskbarLocation.None:
+						break;
+					default:
+						break;
+				}
+
+				if (show)
+					ShowTaskbar();
+			}
+		}
+
+		public static readonly TaskbarLocation CurrentTaskbarLocation = GetTaskbarLocation();
+
+		public enum TaskbarLocation
+		{ Top, Left, Bottom, Right, None }
+
+		public static TaskbarLocation GetTaskbarLocation()
+		{
+			var sc = Screen.FromHandle(new WindowInteropHelper(new System.Windows.Window()).Handle);
+
+			if (sc.WorkingArea.Top > 0)
+				return TaskbarLocation.Top;
+			else if (sc.WorkingArea.Left != sc.Bounds.X)
+				return TaskbarLocation.Left;
+			else if ((sc.Bounds.Height - sc.WorkingArea.Height) > 0)
+				return TaskbarLocation.Bottom;
+			else if (sc.WorkingArea.Right != 0)
+				return TaskbarLocation.Right;
+
+			return TaskbarLocation.None;
+		}
+
+		[DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+		private static extern IntPtr FindWindow(
+		string lpClassName,
+		string lpWindowName);
+
+		[DllImport("user32.dll", SetLastError = true)]
+		private static extern int SetWindowPos(
+			IntPtr hWnd,
+			IntPtr hWndInsertAfter,
+			int x,
+			int y,
+			int cx,
+			int cy,
+			uint uFlags
+		);
+
+		[Flags]
+		private enum SetWindowPosFlags : uint
+		{
+			HideWindow = 128,
+			ShowWindow = 64
+		}
+
+		public static void ShowTaskbar()
+		{
+			var window = FindWindow("Shell_traywnd", "");
+			SetWindowPos(window, IntPtr.Zero, 0, 0, 0, 0, (uint)SetWindowPosFlags.ShowWindow);
+		}
+
+		public static void HideTaskbar()
+		{
+			var window = FindWindow("Shell_traywnd", "");
+			SetWindowPos(window, IntPtr.Zero, 0, 0, 0, 0, (uint)SetWindowPosFlags.HideWindow);
+		}
+
+		#endregion
 	}
 }

@@ -29,12 +29,17 @@
 		private void InitializeComponent()
 		{
 			this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.FileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SuspendLayout();
 			// 
 			// L_Placerholder
 			// 
-			this.L_Placerholder.Size = new System.Drawing.Size(74, 16);
+			this.L_Placerholder.Size = new System.Drawing.Size(70, 15);
 			this.L_Placerholder.Text = "Folder Path";
+			// 
+			// FileDialog
+			// 
+			this.FileDialog.FileName = "Open File";
 			// 
 			// SlickPathTextBox
 			// 
@@ -45,7 +50,6 @@
 			this.Name = "SlickPathTextBox";
 			this.Placeholder = "Folder Path";
 			this.Size = new System.Drawing.Size(200, 35);
-			this.Validation = SlickControls.Enums.ValidationType.Custom;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -54,5 +58,6 @@
 		#endregion
 
 		private System.Windows.Forms.FolderBrowserDialog folderDialog;
+		private System.Windows.Forms.OpenFileDialog FileDialog;
 	}
 }

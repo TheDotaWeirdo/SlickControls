@@ -20,6 +20,18 @@ namespace SlickControls.Forms
 		{
 			InitializeComponent();
 			VerInfo = VersionInfo.GenerateInfo(changelog);
+			var s = Newtonsoft.Json.JsonConvert.SerializeObject(VerInfo.Select(x =>
+			new VersionChangeLog()
+			{
+				VersionString = x.Version.ToString(),
+				Date = null,
+				Tagline = x.Descriptions.FirstThat(y => !y.Info.Any())?.Title ?? string.Empty,
+				ChangeGroups = x.Descriptions.Where(y => y.Info.Any()).Select(z => new VersionChangeLogGroup()
+				{
+					Changes = z.Info.Select(ds => ds.Remove("  •  ")).Where(h => !string.IsNullOrWhiteSpace(h)).ToArray(),
+					Name = z.Title
+				}).ToArray()
+			}));
 			Current = VerInfo.FirstThat(x => x.Version.ToString() == currentVersion);
 			
 			foreach (var item in VerInfo.Distinct((x, y) => x.Version.Major == y.Version.Major && x.Version.Minor == y.Version.Minor))
@@ -62,16 +74,16 @@ namespace SlickControls.Forms
 
 			P_VersionInfo.SuspendDrawing();
 			P_VersionInfo.Controls.Clear();
-			if (inf == null)
-			{
-				if (Current != null)
-					P_VersionInfo.Controls.Add(new ChangeLogVersion(Current));
-			}
-			else
-			{
-				foreach (var item in VerInfo.Where(x => x.Version.Major == inf.Version.Major && x.Version.Minor == inf.Version.Minor))
-					P_VersionInfo.Controls.Add(new ChangeLogVersion(item));
-			}
+			//if (inf == null)
+			//{
+			//	if (Current != null)
+			//		P_VersionInfo.Controls.Add(new ChangeLogVersion(Current));
+			//}
+			//else
+			//{
+			//	foreach (var item in VerInfo.Where(x => x.Version.Major == inf.Version.Major && x.Version.Minor == inf.Version.Minor))
+			//		P_VersionInfo.Controls.Add(new ChangeLogVersion(item));
+			//}
 			P_LeftTabs.Controls.ThatAre<SlickTile>().Foreach(x => x.Selected = x == sender);
 			P_VersionInfo.ResumeDrawing();
 		}

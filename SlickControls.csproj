@@ -11,6 +11,9 @@
     <AssemblyName>SlickControls</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,8 +32,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\TVShowsCalendar\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -46,7 +55,12 @@
   <ItemGroup>
     <Compile Include="Classes\Delegates.cs" />
     <Compile Include="Classes\FlatStripItem.cs" />
+    <Compile Include="Classes\FormValidation.cs" />
+    <Compile Include="Classes\ISupportsReset.cs" />
+    <Compile Include="Classes\IValidationControl.cs" />
     <Compile Include="Classes\Notification.cs" />
+    <Compile Include="Classes\VersionChangeLog.cs" />
+    <Compile Include="Classes\VersionChangeLogGroup.cs" />
     <Compile Include="Classes\VersionInfo.cs" />
     <Compile Include="Color Picker\ColorChangedEventArgs.cs" />
     <Compile Include="Color Picker\ColorModes.cs" />
@@ -93,6 +107,18 @@
     </Compile>
     <Compile Include="Controls\DropDownItem.Designer.cs">
       <DependentUpon>DropDownItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlickDateTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickDateTime.Designer.cs">
+      <DependentUpon>SlickDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlickGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SlickGrid.Designer.cs">
+      <DependentUpon>SlickGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SlickLabelComponent.cs">
       <SubType>Component</SubType>
@@ -229,7 +255,9 @@
     <None Include="Controls\VerticalScroll.Designer.cs">
       <DependentUpon>VerticalScroll.cs</DependentUpon>
     </None>
+    <Compile Include="Enums\DateType.cs" />
     <Compile Include="Enums\HoverState.cs" />
+    <Compile Include="Enums\ProgressBarType.cs" />
     <Compile Include="Enums\TextStyle.cs" />
     <Compile Include="Enums\ValidationType.cs" />
     <Compile Include="Classes\InputResult.cs" />
@@ -257,7 +285,13 @@
     <Compile Include="Forms\FlatToolStrip.Designer.cs">
       <DependentUpon>FlatToolStrip.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ISlickForm.cs" />
+    <Compile Include="Classes\ISlickForm.cs" />
+    <Compile Include="Forms\ProccessPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProccessPrompt.Designer.cs">
+      <DependentUpon>ProccessPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MessagePrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +363,12 @@
     <Compile Include="Panels\PC_ThemeChanger.Designer.cs">
       <DependentUpon>PC_ThemeChanger.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\SideBarPanelContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\SideBarPanelContent.Designer.cs">
+      <DependentUpon>SideBarPanelContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\SlickTextBox.cs">
       <SubType>UserControl</SubType>
@@ -343,6 +383,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\Icon_Abort.png" />
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +401,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\HorizontalScroll.resx">
       <DependentUpon>HorizontalScroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SlickDateTime.resx">
+      <DependentUpon>SlickDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SlickGrid.resx">
+      <DependentUpon>SlickGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SlickScroll.resx">
       <DependentUpon>SlickScroll.cs</DependentUpon>
@@ -418,6 +465,9 @@
     <EmbeddedResource Include="Forms\FlatToolStrip.resx">
       <DependentUpon>FlatToolStrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProccessPrompt.resx">
+      <DependentUpon>ProccessPrompt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessagePrompt.resx">
       <DependentUpon>MessagePrompt.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,6 +500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PC_ThemeChanger.resx">
       <DependentUpon>PC_ThemeChanger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\SideBarPanelContent.resx">
+      <DependentUpon>SideBarPanelContent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -630,5 +683,16 @@
   <ItemGroup>
     <None Include="Resources\Notif_Quick.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiny_Today.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiny_Checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiny_Unchecked.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+  </Target>
 </Project>

@@ -12,15 +12,15 @@ namespace SlickControls.Forms
 	{
 		private Func<object, string> Conversion;
 
-		public DropDownItems(IEnumerable<object> list, Func<object, string> conversion = null)
-		{
-			InitializeComponent();
-			Conversion = conversion;
-			DesignChanged(FormDesign.Design);
+        public DropDownItems(IEnumerable<object> list, Func<object, string> conversion = null)
+        {
+            InitializeComponent();
+            Conversion = conversion;
+            DesignChanged(FormDesign.Design);
 
-			SetItems(list);
-			Height = Math.Min(400, 2 + P_Items.Height);
-		}
+            SetItems(list);
+            Height = Math.Min(400, 2 + P_Items.Height);
+        }
 
 		private void Ctrl_Click(object sender, EventArgs e)
 		{

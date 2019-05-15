@@ -168,3 +168,7 @@ C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\Slick
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.SlickForm.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickSectionPanel.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickScroll.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickDateTime.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Forms.ProccessPrompt.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Panels.SideBarPanelContent.resources
+C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Release\SlickControls.Controls.SlickGrid.resources

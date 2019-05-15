@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Extensions;
 using SlickControls.Classes;
@@ -10,9 +11,9 @@ namespace SlickControls.Controls
 {
 	public partial class ChangeLogVersion : SlickControl
 	{
-		private VersionInfo inf;
+		private VersionChangeLog inf;
 
-		public ChangeLogVersion(VersionInfo inf)
+		public ChangeLogVersion(VersionChangeLog inf)
 		{
 			InitializeComponent();
 			this.inf = inf;
@@ -27,104 +28,80 @@ namespace SlickControls.Controls
 		{
 			e.Graphics.Clear(BackColor);
 
-			e.Graphics.DrawString(inf.Version.ToString(),
-				new Font("Nirmala UI", 9.75F, FontStyle.Bold),
-				new SolidBrush(FormDesign.Design.ForeColor),
-				new PointF(20, 4));
-
-			var h = 23F;
-			foreach (var item in inf.Descriptions)
-			{
-				if (item.Info.Any())
-				{
-					var bnds = e.Graphics.MeasureString(item.Title, new Font("Nirmala UI", 9F, FontStyle.Bold), Width - 30);
-					e.Graphics.DrawString(item.Title,
-						new Font("Nirmala UI", 9F, FontStyle.Bold),
-						new SolidBrush(FormDesign.Design.LabelColor),
-						new RectangleF(25, h, Width - 30, bnds.Height));
-
-					h += 3 + bnds.Height;
-
-					foreach (var info in item.Info)
-					{
-						bnds = e.Graphics.MeasureString(info, new Font("Nirmala UI", 8.25F), Width - 35);
-						e.Graphics.DrawString(info,
-							new Font("Nirmala UI", 8.25F),
-							new SolidBrush(FormDesign.Design.InfoColor),
-							new RectangleF(30, h, Width - 35, bnds.Height));
-
-						h += bnds.Height;
-					}
-
-					h += 5;
-				}
-				else
-				{
-					var bnds = e.Graphics.MeasureString(item.Title, new Font("Nirmala UI", 9F, FontStyle.Bold), Width - 30);
-					e.Graphics.DrawString(item.Title,
-						new Font("Nirmala UI", 9F, FontStyle.Bold),
-						new SolidBrush(FormDesign.Design.ActiveColor),
-						new RectangleF(25, h, Width - 30, bnds.Height));
-
-					h += 8 + bnds.Height;
-				}
-			}
-
-			e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-			e.Graphics.FillPolygon(new SolidBrush(FormDesign.Design.ForeColor),
-				new PointF[]
-				{
-					new PointF(12F,7),
-					new PointF(16.5F,11.5F),
-					new PointF(12F,16),
-					new PointF(7.5F,11.5F),
-				});
-
-			e.Graphics.FillRectangle(new SolidBrush(FormDesign.Design.ForeColor), 11.5F, 11.5F, 1, Height - 60);
-
-			e.Graphics.FillRectangle(new System.Drawing.Drawing2D.LinearGradientBrush(
-				new RectangleF(11.5F, Height - 60, 1, 50),
-				FormDesign.Design.ForeColor,
-				BackColor,
-				90),
-				new RectangleF(11.5F, Height - 60, 1, 49));
+			DrawItems(e.Graphics, true);
 		}
 
-		private int GetHeight()
+		private int GetHeight() => DrawItems(CreateGraphics(), false);
+
+		private int DrawItems(Graphics g, bool draw)
 		{
-			var g = CreateGraphics();
+			var tab = 0.25D;
+			var h = 4;
 
-			var h = 30F;
-			foreach (var item in inf.Descriptions)
+			if (draw)
+				g.DrawLine(new Pen(FormDesign.Design.AccentColor, 1), 20, 35, 20, Height - 13);
+
+			g.DrawStringItem(inf.Version
+				, new Font("Nirmala UI", 14F, FontStyle.Bold)
+				, FormDesign.Design.ForeColor
+				, Width
+				, tab
+				, ref h
+				, draw);
+
+			if (draw && inf.Date != null)
+				g.DrawString($"on {inf.Date?.ToReadableString(inf.Date?.Year != DateTime.Now.Year, ExtensionClass.DateFormat.TDMY)}",
+				new Font("Nirmala UI", 8.25F),
+				new SolidBrush(FormDesign.Design.LabelColor),
+				new PointF(56, 12));
+
+			tab = 2;
+
+			if (!string.IsNullOrWhiteSpace(inf.Tagline))
 			{
-				if (item.Info.Any())
-				{
-					var bnds = g.MeasureString(item.Title, new Font("Nirmala UI", 9F, FontStyle.Bold | FontStyle.Italic), Width - 30);
+				h += 2;
 
-					h += 3 + bnds.Height;
+				g.DrawStringItem(inf.Tagline
+					 , new Font("Century Gothic", 8.25F, FontStyle.Italic)
+					 , FormDesign.Design.ButtonForeColor
+					 , Width
+					 , tab
+					 , ref h
+					, draw);
 
-					foreach (var info in item.Info)
-					{
-						bnds = g.MeasureString(info, new Font("Nirmala UI", 8.25F), Width - 35);
-
-						h += bnds.Height;
-					}
-
-					h += 5;
-				}
-				else
-				{
-					var bnds = g.MeasureString(item.Title, new Font("Nirmala UI", 9F, FontStyle.Bold), Width - 30);
-
-					h += 8 + bnds.Height;
-				}
+				h += 4;
 			}
 
-			return (int)h;
-		}
+			h += 2;
 
+			foreach (var item in inf.ChangeGroups.OrderBy(x => x.Order))
+			{
+				tab = 2;
+
+				g.DrawStringItem(item.Name
+					, new Font("Nirmala UI", 8.25F, FontStyle.Bold)
+					, FormDesign.Design.LabelColor
+					, Width
+					, tab
+					, ref h
+					, draw);
+
+				tab++;
+
+				foreach (var ch in item.Changes)
+					g.DrawStringItem((ch.StartsWith("-") ? "     " : "•  ") + ch
+						, new Font("Nirmala UI", 8.25F)
+						, FormDesign.Design.InfoColor
+						, Width
+						, tab
+						, ref h
+						, draw);
+
+				h += 10;
+			}
+
+			return h;
+		}
 
 		private void ChangeLogVersion_Resize(object sender, EventArgs e)
 		{

@@ -69,14 +69,17 @@ namespace SlickControls.Controls
 
 		private void Tile_Paint(object sender, PaintEventArgs e)
 		{
-			var back = FormDesign.Design.BackColor;
+			var back = BackColor;
 			var fore = FormDesign.Design.ForeColor;
 
 			if (hovered)
-				back = FormDesign.Design.ButtonColor;
+				back = BackColor.MergeColor(FormDesign.Design.BackColor, 25);
 
 			if (Selected)
+			{
 				fore = FormDesign.Design.ActiveColor;
+				back = FormDesign.Design.BackColor;
+			}
 			else if (mouseDowned)
 			{
 				back = FormDesign.Design.ActiveColor;

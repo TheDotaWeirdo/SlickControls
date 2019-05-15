@@ -75,7 +75,7 @@ namespace SlickControls.Panels
 		[Browsable(false)]
 		public PanelItem PanelItem { get; internal set; }
 
-		public virtual bool CanExit()
+		public virtual bool CanExit(bool toBeDisposed)
 		{
 			return true;
 		}
@@ -115,6 +115,15 @@ namespace SlickControls.Panels
 
 		protected DialogResult ShowPrompt(string message, string title = "Prompt", PromptButtons buttons = PromptButtons.OK, PromptIcons icon = PromptIcons.None)
 			=> MessagePrompt.Show(message, title, buttons, icon, Form);
+
+		protected DialogResult ShowPrompt(string message, PromptButtons buttons = PromptButtons.OK, PromptIcons icon = PromptIcons.None)
+			=> MessagePrompt.Show(message, "Prompt", buttons, icon, Form);
+
+		protected Classes.InputResult ShowInputPrompt(string message, string title = "Input Prompt", string defaultValue = "", PromptButtons buttons = PromptButtons.OK, PromptIcons icon = PromptIcons.None, Func<string, bool> inputValidation = null)
+			=> MessagePrompt.ShowInput(message, title, defaultValue, buttons, icon, inputValidation, Form);
+
+		protected Classes.InputResult ShowInputPrompt(string message, string defaultValue = "", PromptButtons buttons = PromptButtons.OK, PromptIcons icon = PromptIcons.None, Func<string, bool> inputValidation = null)
+			=> MessagePrompt.ShowInput(message, "Input Prompt", defaultValue, buttons, icon, inputValidation, Form);
 
 		protected override void OnCreateControl()
 		{
@@ -158,8 +167,8 @@ namespace SlickControls.Panels
 					{
 						if (LoadData())
 						{
-							this.TryInvoke(OnDataLoad);
 							DataLoaded = true;
+							this.TryInvoke(OnDataLoad);
 						}
 						else
 							this.TryInvoke(OnLoadFail);

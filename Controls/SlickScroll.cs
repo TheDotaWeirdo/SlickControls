@@ -11,6 +11,8 @@ namespace SlickControls.Controls
 
 	public partial class SlickScroll : UserControl
 	{
+		//public event EventHandler OnScroll;
+
 		#region Private Fields
 
 		private const int BAR_SIZE_MAX = 12;
@@ -85,7 +87,7 @@ namespace SlickControls.Controls
 		private bool Open => Width != BAR_SIZE_MIN;
 
 		[Browsable(false)]
-		public bool Active => linkedControl != null && ControlSize != 0 && ControlSize > linkedControl.Parent.Height;
+		public bool Active => linkedControl?.Parent != null && ControlSize != 0 && ControlSize > linkedControl.Parent.Height;
 
 		#endregion Private Properties
 
@@ -111,6 +113,40 @@ namespace SlickControls.Controls
 			LinkedControl_Resize(null, null);
 		}
 
+		public void ScrollTo(double perc, int intensity = 1)
+		{
+			TargetPercentage = perc;
+
+			for (int i = 1; i < intensity; i++)
+				speedModifier = speedModifier.If(0, 10, speedModifier / 1.05);
+		}
+
+		public void ScrollTo(Control control, int intensity = 1)
+		{
+			var h = 0;
+
+			while (control != LinkedControl)
+			{
+				h += control.Top;
+				control = control.Parent;
+			}
+
+			ScrollTo(-100 * h / (linkedControl.Parent.Height - ControlSize), intensity);
+		}
+
+		public void SetPercentage(Control control, bool target = false)
+		{
+			var h = 0;
+
+			while (control != LinkedControl)
+			{
+				h += control.Top;
+				control = control.Parent;
+			}
+
+			SetPercentage(-100 * h / (linkedControl.Parent.Height - ControlSize), target);
+		}
+
 		public void SetPercentage(double perc, bool target = false)
 		{
 			Percentage = perc.Between(0, 100);
@@ -125,6 +161,8 @@ namespace SlickControls.Controls
 			Bar.Top = (int)(Percentage * (Height - (Bar.Height)) / 100);
 			LinkedControl.Top = (int)(Percentage * (linkedControl.Parent.Height - ControlSize) / 100);
 			Invalidate();
+
+			OnScroll(new ScrollEventArgs(ScrollEventType.ThumbTrack, (int)Percentage));
 		}
 
 		#endregion Public Methods
@@ -176,7 +214,7 @@ namespace SlickControls.Controls
 			{
 				var size = ControlSize - linkedControl.Parent.Height;
 				var incPerc = (TargetPercentage - Percentage) > 0;
-				var minStep = 1000D / size * speedModifier;
+				var minStep = 750D / size * speedModifier;
 				var maxStep = Math.Max(minStep, ControlSize / (75D / speedModifier));
 				var perc = (((TargetPercentage - Percentage)).Between(incPerc.If(minStep, -maxStep), incPerc.If(maxStep, -minStep)) / speedModifier);
 

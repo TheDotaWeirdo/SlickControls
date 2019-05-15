@@ -101,6 +101,11 @@ namespace SlickControls.Forms
 			}
 		}
 
+		public void SetText(string text)
+		{
+			this.TryInvoke(() => { Notification.Description = text; PictureBox.Invalidate(); });
+		}
+
 		private static Form Empty = new Form();
 
 		public static NotificationForm Push(Notification notification, Form form = null, bool longSound = false, int? timeoutSeconds = null)

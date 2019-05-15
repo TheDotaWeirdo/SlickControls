@@ -26,6 +26,8 @@ namespace SlickControls.Controls
 		[EditorBrowsable(EditorBrowsableState.Always)]
 		[Bindable(true)]
 		public override string Text { get; set; }
+
+		[Browsable(false)]
 		public bool Hovered
 		{
 			get => hovered;
@@ -41,6 +43,7 @@ namespace SlickControls.Controls
 		[Category("Appearance")]
 		public Image Icon { get; set; }
 
+		[Category("Behavior")]
 		public bool Selected
 		{
 			get => selected;
@@ -62,6 +65,7 @@ namespace SlickControls.Controls
 			}
 		}
 
+		[Browsable(false)]
 		public double Perc { get; private set; }
 
 		public SlickTab()

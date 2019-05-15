@@ -47,6 +47,9 @@ namespace SlickControls.Controls
 
 		private HoverState hoverState = HoverState.Normal;
 
+		[Category("Appearance"), DefaultValue(false)]
+		public bool Display { get; set; }
+
 		[Category("Appearance")]
 		public new Image Image
 		{
@@ -121,7 +124,7 @@ namespace SlickControls.Controls
 					back = ActiveColor == null ? FormDesign.Design.ActiveColor : ActiveColor();
 					break;
 				default:
-					fore = ForeColor;
+					fore = Enabled || Display ? ForeColor : ForeColor.MergeColor(BackColor);
 					back = BackColor;
 					break;
 			}

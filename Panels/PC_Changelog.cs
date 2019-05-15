@@ -11,34 +11,57 @@ using SlickControls.Classes;
 using Extensions;
 using SlickControls.Controls;
 using System.Drawing.Drawing2D;
+using System.Reflection;
+using System.IO;
 
 namespace SlickControls.Panels
 {
 	public partial class PC_Changelog : PanelContent
 	{
-		private IEnumerable<VersionInfo> VerInfo;
-		private VersionInfo Current;
+		private VersionChangeLog Current;
+		private VersionChangeLog[] ChangeLogs;
 
-		public PC_Changelog(IEnumerable<string> changelog, string currentVersion)
+		public PC_Changelog(Assembly assembly, string resourceName, Version currentVersion)
 		{
 			InitializeComponent();
-			VerInfo = VersionInfo.GenerateInfo(changelog);
-			Current = VerInfo.FirstThat(x => x.Version.ToString() == currentVersion);
 
-			foreach (var item in VerInfo.Where(x => Current == null || x != Current).Distinct((x, y) => x.Version.Major == y.Version.Major && x.Version.Minor == y.Version.Minor))
-				AddVersion(item);
+			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+			using (StreamReader reader = new StreamReader(stream))
+				ChangeLogs = Newtonsoft.Json.JsonConvert.DeserializeObject<VersionChangeLog[]>(reader.ReadToEnd());
+
+			Current = ChangeLogs.FirstThat(x => x.Version == currentVersion);
+
+			foreach (var grp in ChangeLogs
+				.Where(x => Current == null || x != Current)
+				.Distinct((x, y) => x.Version.Major == y.Version.Major && x.Version.Minor == y.Version.Minor)
+				.OrderBy(x => x.Version)
+				.GroupBy(x => x.Version.Major))
+			{
+				foreach (var item in grp)
+					AddVersion(item);
+
+				P_LeftTabs.Controls.Add(new Panel() { Dock = DockStyle.Top, Height = 20 });
+			}
 
 			if (Current != null)
-				AddVersion(VerInfo.FirstThat(x => x.Version.ToString() == currentVersion), "Current Version");
-
-			DesignChanged(FormDesign.Design);
+				AddVersion(Current, "Current Version");
 		}
 
-		private void AddVersion(VersionInfo versionInfo, string text = null)
+		protected override void DesignChanged(FormDesign design)
+		{
+			base.DesignChanged(design);
+
+			base_Text.BackColor =
+			TLP_Mainzs.BackColor = design.BackColor.Tint(Lum: design.Type.If(FormDesignType.Dark, 3, -3));
+			panel2.BackColor = design.BackColor;
+			P_Spacer.BackColor = design.AccentColor;
+		}
+
+		private void AddVersion(VersionChangeLog versionInfo, string text = null)
 		{
 			var M = versionInfo.Version.Major;
 			var m = versionInfo.Version.Minor;
-			var vers = VerInfo.Where(x => x.Version.Major == M && x.Version.Minor == m);
+			var vers = ChangeLogs.Where(x => x.Version.Major == M && x.Version.Minor == m);
 
 			var st = new SlickTile()
 			{
@@ -48,7 +71,8 @@ namespace SlickControls.Panels
 				IconSize = 16,
 				Image = Properties.Resources.ArrowRight,
 				Padding = new Padding(10),
-				Size = new Size(175, 45),
+				Margin = new Padding(0),
+				Size = new Size(175, 30),
 				TabStop = false,
 				Text = text.IfNull(vers.Count() == 1 ? $"v {versionInfo.Version}" : $"v {M}.{m}.{vers.Min(x => x.Version.Build)} → {M}.{m}.{vers.Max(x => x.Version.Build)}"),
 
@@ -66,7 +90,7 @@ namespace SlickControls.Panels
 
 		private void Tile_Click(object sender, EventArgs e)
 		{
-			var inf = (VersionInfo)(sender as Control).Tag;
+			var inf = (VersionChangeLog)(sender as Control).Tag;
 
 			P_VersionInfo.SuspendDrawing();
 			P_VersionInfo.Controls.Clear();
@@ -77,24 +101,11 @@ namespace SlickControls.Panels
 			}
 			else
 			{
-				foreach (var item in VerInfo.Where(x => x.Version.Major == inf.Version.Major && x.Version.Minor == inf.Version.Minor))
+				foreach (var item in ChangeLogs.Where(x => x.Version.Major == inf.Version.Major && x.Version.Minor == inf.Version.Minor))
 					P_VersionInfo.Controls.Add(new ChangeLogVersion(item));
 			}
 			P_LeftTabs.Controls.ThatAre<SlickTile>().Foreach(x => x.Selected = x == sender);
 			P_VersionInfo.ResumeDrawing();
-		}
-
-		private void P_Spacer_Paint(object sender, PaintEventArgs e)
-		{
-			e.Graphics.Clear(FormDesign.Design.BackColor);
-			e.Graphics.FillRectangle(new SolidBrush(FormDesign.Design.AccentColor), 0, 0, 1, P_Spacer.Height - 150);
-
-			e.Graphics.FillRectangle(new LinearGradientBrush(
-				new RectangleF(0, P_Spacer.Height - 175, 1, 150),
-				FormDesign.Design.AccentColor,
-				FormDesign.Design.BackColor,
-				90),
-				new RectangleF(0, P_Spacer.Height - 175, 1, 150));
 		}
 
 		private void PC_Changelog_Resize(object sender, EventArgs e)
@@ -104,19 +115,6 @@ namespace SlickControls.Panels
 
 			P_LeftTabs.MaximumSize = new Size(panel1.Width, 9999);
 			P_LeftTabs.MinimumSize = new Size(panel1.Width, 0);
-		}
-
-		private void P_Spacer_2_Paint(object sender, PaintEventArgs e)
-		{
-			e.Graphics.Clear(FormDesign.Design.BackColor);
-			e.Graphics.FillRectangle(new SolidBrush(FormDesign.Design.AccentColor), 0, 0, P_Spacer_2.Width - 150, 1);
-
-			e.Graphics.FillRectangle(new LinearGradientBrush(
-				new RectangleF(P_Spacer_2.Width - 175, 0, 150, 1),
-				FormDesign.Design.AccentColor,
-				FormDesign.Design.BackColor,
-				0F),
-				new RectangleF(P_Spacer_2.Width - 175, 0, 150, 1));
 		}
 	}
 }

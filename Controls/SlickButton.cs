@@ -28,6 +28,9 @@ namespace SlickControls.Controls
 			DesignChanged(FormDesign.Design);
 		}
 
+		[Category("Appearance"), DisplayName("Color Style"), DefaultValue(ColorStyle.Active)]
+		public ColorStyle ColorStyle { get; set; } = ColorStyle.Active;
+
 		[Browsable(true)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		[EditorBrowsable(EditorBrowsableState.Always)]
@@ -82,11 +85,11 @@ namespace SlickControls.Controls
 					back = FormDesign.Design.ButtonColor.Tint(Lum: FormDesign.Design.Type == FormDesignType.Light ? -7 : 7);
 					break;
 				case HoverState.Pressed:
-					fore = FormDesign.Design.ActiveForeColor.Tint(ColorShade?.GetHue());
-					back = ColorShade ?? FormDesign.Design.ActiveColor;
+					fore = ColorStyle.GetBackColor().Tint(ColorShade?.GetHue());
+					back = ColorShade == null ? ColorStyle.GetColor() : ColorStyle.GetColor().Tint(ColorShade?.GetHue()).MergeColor((Color)ColorShade);
 					break;
 				default:
-					fore = FormDesign.Design.ButtonForeColor;
+					fore = Enabled ? FormDesign.Design.ButtonForeColor : FormDesign.Design.ButtonForeColor.MergeColor(FormDesign.Design.ButtonColor);
 					back = FormDesign.Design.ButtonColor;
 					break;
 			}

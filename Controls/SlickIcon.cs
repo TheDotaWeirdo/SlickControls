@@ -13,9 +13,7 @@ namespace SlickControls.Controls
 {
 	public class SlickIcon : PictureBox
 	{
-		private Func<Color> activeColor;
-
-		private bool enableGraphics = true;
+        private bool enableGraphics = true;
 
 		private int minimumIconSize = 18;
 
@@ -37,10 +35,10 @@ namespace SlickControls.Controls
 
 		public delegate void action();
 
-		[Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-		public Func<Color> ActiveColor { get => activeColor; set => activeColor = value; }
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public Func<Color> ActiveColor { get; set; }
 
-		private HoverState hoverState = HoverState.Normal;
+        private HoverState hoverState = HoverState.Normal;
 
 		[Category("Appearance")]
 		public new Image Image
@@ -75,9 +73,12 @@ namespace SlickControls.Controls
 				Cursor = value ? Cursors.Hand : Cursors.Default;
 				UpdateState(true);
 			}
-		}
+        }
 
-		private bool IsPicture
+        [Category("Appearance"), DisplayName("Color Style"), DefaultValue(ColorStyle.Active)]
+        public ColorStyle ColorStyle { get; set; } = ColorStyle.Active;
+
+        private bool IsPicture
 		{
 			get
 			{
@@ -104,18 +105,14 @@ namespace SlickControls.Controls
 						break;
 					}
 				case HoverState.Hovered:
-					{
-						if (ActiveColor == null)
-						{
-							if (IsPicture)
-								base.Image = Image.Color(FormDesign.Design.ActiveColor);
-						}
-						else
-						{
-							if (IsPicture)
-								base.Image = Image.Color(activeColor());
-						}
-
+                {
+                    if (IsPicture)
+                    {
+                        if (ActiveColor == null)
+                            base.Image = Image.Color(ColorStyle.GetColor());
+                        else
+                            base.Image = Image.Color(ActiveColor());
+                    }
 						break;
 					}
 				default:

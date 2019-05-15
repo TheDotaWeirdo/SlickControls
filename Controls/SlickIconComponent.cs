@@ -80,7 +80,7 @@ namespace SlickControls.Controls
 
 		private void _parent_MouseClick(object sender, MouseEventArgs e)
 		{
-			if (Visible && Bounds.Contains(e.Location))
+			if (Visible && VisibleBounds.Contains(e.Location))
 				Click?.Invoke(this, e);
 		}
 
@@ -117,9 +117,24 @@ namespace SlickControls.Controls
 		{
 			if (Visible)
 			{
-				MouseHovered = Bounds.Contains(e.Location);
+				MouseHovered = VisibleBounds.Contains(e.Location);
 				MouseHoverChanged?.Invoke(this, e);
-				Parent?.Invalidate(Bounds);
+				Parent?.Invalidate(VisibleBounds);
+			}
+		}
+
+		private Rectangle VisibleBounds
+		{
+			get
+			{
+				if (Anchor == (AnchorStyles.Right | AnchorStyles.Top))
+					return new Rectangle(new Point(Parent.Width - Location.X - Size.Width, Location.Y), Size);
+				else if (Anchor == (AnchorStyles.Right | AnchorStyles.Bottom))
+					return new Rectangle(new Point(Parent.Width - Location.X - Size.Width, Parent.Height - Location.Y - Size.Height), Size);
+				else if (Anchor == (AnchorStyles.Left | AnchorStyles.Bottom))
+					return new Rectangle(new Point(Location.X, Parent.Height - Location.Y - Size.Height), Size);
+
+				return Bounds;
 			}
 		}
 
@@ -127,15 +142,7 @@ namespace SlickControls.Controls
 		{
 			if (Visible)
 			{
-				var loc = Location;
-				if (Anchor == (AnchorStyles.Right | AnchorStyles.Top))
-					loc = new Point(Parent.Width - Location.X - Size.Width, Location.Y);
-				else if (Anchor == (AnchorStyles.Right | AnchorStyles.Bottom))
-					loc = new Point(Parent.Width - Location.X - Size.Width, Parent.Height - Location.Y - Size.Height);
-				else if (Anchor == (AnchorStyles.Left | AnchorStyles.Bottom))
-					loc = new Point(Location.X, Parent.Height - Location.Y - Size.Height);
-
-				e.Graphics.DrawImage(new Bitmap(Icon).Color(((MouseHovered && Enabled) ? HoverStyle : ColorStyle).GetColor()), new Rectangle(loc, Size));
+				e.Graphics.DrawImage(new Bitmap(Icon).Color(((MouseHovered && Enabled) ? HoverStyle : ColorStyle).GetColor()), VisibleBounds);
 			}
 		}
 

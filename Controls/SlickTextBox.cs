@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Extensions;
+using SlickControls.Classes;
 using SlickControls.Enums;
 
 namespace SlickControls.Controls
 {
 	[DefaultEvent("TextChanged")]
-	public partial class SlickTextBox : SlickControl
+	public partial class SlickTextBox : SlickControl, IValidationControl, ISupportsReset
 	{
 		[EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		public new event EventHandler TextChanged;
@@ -44,10 +45,25 @@ namespace SlickControls.Controls
 			get => PB.Image;
 			set
 			{
-				PB.Image = value.Color(FormDesign.Design.IconColor);
-				TLP.ColumnStyles[1].Width = (PB.Visible = value != null) ? 20 : 0;
+            PB.TryInvoke(() =>
+            {
+               PB.Image = value.Color(FormDesign.Design.IconColor);
+               TLP.ColumnStyles[1].Width = (PB.Visible = value != null) ? 20 : 0;
+            });
 			}
 		}
+
+		[Category("Behavior")]
+		public bool Password { get => TB.UseSystemPasswordChar; set => TB.UseSystemPasswordChar = value; }
+
+		[Category("Behavior")]
+		public bool ReadOnly { get => TB.ReadOnly; set => TB.ReadOnly = value; }
+
+		[Category("Behavior")]
+		public bool Required { get; set; }
+
+		[Category("Behavior"), DisplayName("Select All On Focus")]
+		public bool SelectAllOnFocus { get; set; }
 
 		[Category("Behavior")]
 		public int MaxLength { get => TB.MaxLength; set => TB.MaxLength = value; }
@@ -85,27 +101,27 @@ namespace SlickControls.Controls
 		[Browsable(true)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		[Bindable(true)]
-		public override string Text { get => base.Text; set => TB.Text = base.Text = value; }
+		public override string Text { get => base.Text; set { TB.Text = base.Text = value; if (DefaultValue != null) DefaultValue = value; } }
 
 		[Category("Appearance")]
 		public HorizontalAlignment TextAlign { get => TB.TextAlign; set => TB.TextAlign = value; }
 
 		[Category("Behavior")]
-		public ValidationType Validation { get; set; } = ValidationType.None;
+		public virtual ValidationType Validation { get; set; } = ValidationType.None;
+
+		[Category("Behavior"), DefaultValue(null)]
+		public string DefaultValue { get; set; } = null;
 
 		[Category("Behavior"), DisplayName("Regex Validation")]
 		public string ValidationRegex { get; set; } = "";
 
-		public bool ValidInput
+		public virtual bool ValidInput
 		{
 			get
 			{
-				if (TB.Text != "")
+				if (!string.IsNullOrWhiteSpace(TB.Text))
 					switch (Validation)
 					{
-						case ValidationType.None:
-							return true;
-
 						case ValidationType.Number:
 							return TB.Text.All(char.IsDigit);
 
@@ -122,17 +138,17 @@ namespace SlickControls.Controls
 							return true;
 					}
 
-				return true;
+				return !Required;
 			}
 		}
-
-		public bool ReadOnly { get => TB.ReadOnly; set => TB.ReadOnly = false; }
 
 		public new void Select() => TB.Select();
 
 		public void Select(int start, int length) => TB.Select(start, length);
 
 		public void SelectAll() => TB.SelectAll();
+
+		public void ResetValue() => Text = DefaultValue;
 
 		protected override void OnCreateControl()
 		{
@@ -149,7 +165,7 @@ namespace SlickControls.Controls
 			L_Placerholder.ForeColor = design.InfoColor;
 			TB.ForeColor = design.ForeColor;
 			PB.Color(FormDesign.Design.IconColor);
-			P_Bar.BackColor = TB.Focused ? design.ActiveColor : design.AccentColor;
+			P_Bar.TryInvoke(() => P_Bar.BackColor = TB.Focused ? design.ActiveColor : design.AccentColor);
 		}
 
 		private void SlickTextBox_BackColorChanged(object sender, EventArgs e)
@@ -180,12 +196,13 @@ namespace SlickControls.Controls
 					case ValidationType.Decimal:
 						if (!ValidInput)
 							TB.Text = Regex.Match(TB.Text, @"\d+\.?(\d+)?").Value;
+						else
+						{ Text = TB.Text; TextChanged?.Invoke(this, e); }
 						break;
 
 					case ValidationType.Custom:
 						Text = TB.Text;
-						if (ValidationCustom(TB.Text))
-							TextChanged?.Invoke(this, e);
+						TextChanged?.Invoke(this, e);
 						break;
 
 					case ValidationType.Regex:
@@ -201,7 +218,7 @@ namespace SlickControls.Controls
 			else
 			{ Text = TB.Text; TextChanged?.Invoke(this, e); }
 
-			L_Placerholder.Visible = Text == "";
+			L_Placerholder.Visible = TB.Text == "";
 		}
 
 		private void L_Placerholder_Click(object sender, EventArgs e)
@@ -218,6 +235,11 @@ namespace SlickControls.Controls
 		{
 			if (TB.Focused)
 				P_Bar.BackColor = FormDesign.Design.ActiveColor;
+		}
+
+		public void SetError(bool warning = false)
+		{
+			P_Bar.BackColor = warning ? FormDesign.Design.YellowColor : FormDesign.Design.RedColor;
 		}
 	}
 }

@@ -1,7 +1,9 @@
 ﻿using Extensions;
+using SlickControls.Enums;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace SlickControls.Controls
@@ -9,7 +11,6 @@ namespace SlickControls.Controls
 	[DefaultEvent("PercentageChanged")]
 	public partial class SlickProgressBar : UserControl
 	{
-		private double minStep = .5;
 		private double perc = 0;
 		private double targetPerc = 0;
 		private System.Timers.Timer timer = new System.Timers.Timer(35);
@@ -28,7 +29,9 @@ namespace SlickControls.Controls
 		public event EventHandler PercentageChanged;
 
 		[Category("Behavior"), DefaultValue(0.5)]
-		public double MinStep { get => minStep; set => minStep = value; }
+		public double MinStep { get; set; } = 0.5;
+		[Category("Behavior"), DefaultValue(ProgressBarType.Normal)]
+		public ProgressBarType ProgressType { get; set; } = ProgressBarType.Normal;
 
 		[Category("Behavior"), DefaultValue(0)]
 		public double Percentage
@@ -36,7 +39,7 @@ namespace SlickControls.Controls
 			get => targetPerc;
 			set
 			{
-				targetPerc = Math.Min(100, value);
+				targetPerc = value.Between(0, 100);
 				timer.Start();
 				PercentageChanged?.Invoke(this, new EventArgs());
 			}
@@ -46,24 +49,24 @@ namespace SlickControls.Controls
 
 		private void SlickProgressBar_Paint(object sender, PaintEventArgs e)
 		{
-			var barWidth = (int)( ( Width - Padding.Horizontal ) * perc / 100 ).Between(14, Width - Padding.Horizontal);
+			var barWidth = (int)((Width - Padding.Horizontal) * perc / 100).If(x => x == 0, x => 0, x => x.Between(10, Width - Padding.Horizontal));
 
 			e.Graphics.Clear(BackColor);
 
-			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-			e.Graphics.FillRoundedRectangle(new SolidBrush(FormDesign.Design.MenuColor), new Rectangle(new Point(Padding.Left, Padding.Top), new Size(Width - Padding.Horizontal, Height - Padding.Vertical)), 7);
-			e.Graphics.FillRoundedRectangle(new SolidBrush(perc == 100 ? FormDesign.Design.GreenColor : FormDesign.Design.ActiveColor), new Rectangle(new Point(Padding.Left, Padding.Top), new Size(barWidth, Height - Padding.Vertical)), 7);
+			e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+			e.Graphics.FillRoundedRectangle(new SolidBrush(BackColor.MergeColor(FormDesign.Design.AccentColor)), new Rectangle(new Point(Padding.Left, Padding.Top), new Size(Width - Padding.Horizontal, Height - Padding.Vertical)), 5);
+			if (barWidth > 0)
+				e.Graphics.FillRoundedRectangle(new LinearGradientBrush(new PointF(0, 0), new PointF(Width, 0), BackColor.MergeColor(FormDesign.Design.AccentColor), FormDesign.Design.ActiveColor), new Rectangle(new Point(Padding.Left, Padding.Top), new Size(barWidth, Height - Padding.Vertical)), 5);
 
-			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 			e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
 			var txt = $"{Math.Floor(perc)} %";
 			var bnds = e.Graphics.MeasureString(txt, Font);
 
 			if (barWidth < bnds.Width + 10)
-				e.Graphics.DrawString(txt, Font, new SolidBrush(FormDesign.Design.ForeColor), new PointF(barWidth + 5, ( Height - Padding.Vertical - bnds.Height ) / 2));
+				e.Graphics.DrawString(txt, Font, new SolidBrush(FormDesign.Design.ForeColor), new PointF(barWidth + 5, (Height - Padding.Vertical - bnds.Height) / 2));
 			else
-				e.Graphics.DrawString(txt, Font, new SolidBrush(FormDesign.Design.ActiveForeColor), new PointF(barWidth - bnds.Width - 5, ( Height - Padding.Vertical - bnds.Height ) / 2));
+				e.Graphics.DrawString(txt, Font, new SolidBrush(FormDesign.Design.ActiveForeColor), new PointF(barWidth - bnds.Width - 5, (Height - Padding.Vertical - bnds.Height) / 2));
 		}
 
 		private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -71,15 +74,17 @@ namespace SlickControls.Controls
 			if (targetPerc != perc)
 			{
 				if (targetPerc - perc > 0)
-					perc = Math.Min(targetPerc, perc + Math.Max(minStep, ( targetPerc - perc ) / 8d));
+					perc = Math.Min(targetPerc, perc + Math.Max(MinStep, (targetPerc - perc) / 8d / ProgressType.Switch(ProgressBarType.Fast, .7, ProgressBarType.Normal, 1, ProgressBarType.Slow, 2, 3.5)));
 				else
-					perc = Math.Max(targetPerc, perc - Math.Max(minStep, ( perc - targetPerc ) / 8d));
+					perc = Math.Max(targetPerc, perc - Math.Max(MinStep, (perc - targetPerc) / 8d / ProgressType.Switch(ProgressBarType.Fast, .7, ProgressBarType.Normal, 1, ProgressBarType.Slow, 2, 3.5)));
 
-				if (( perc == 100 && targetPerc == 100 ) || ( perc == 0 && targetPerc == 0 ))
+				if ((perc == 100 && targetPerc == 100) || (perc == 0 && targetPerc == 0))
 					timer.Stop();
 
 				this.TryInvoke(Refresh);
 			}
+			else
+				timer.Stop();
 		}
 	}
 }

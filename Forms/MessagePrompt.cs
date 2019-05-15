@@ -47,9 +47,16 @@ namespace SlickControls.Forms
 		private void MessagePrompt_Load(object sender, EventArgs e)
 		{
 			PlaySound();
-		}		
+		}
 
 		#region Statics
+
+		public static DialogResult Show(
+			  string message
+			, PromptButtons buttons = PromptButtons.OK
+			, PromptIcons icon = PromptIcons.None
+			, SlickForm form = null)
+			=> Show(message, "Prompt", buttons, icon, form);
 
 		public static DialogResult Show(
 			  string message
@@ -310,8 +317,6 @@ namespace SlickControls.Forms
 
 			P_Spacer_1.BackColor = design.AccentColor;
 
-			B_Abort.ColorShade = design.RedColor;
-
 			switch (selectedIcon)
 			{
 				case PromptIcons.Hand:
@@ -392,22 +397,33 @@ namespace SlickControls.Forms
 
 				case PromptButtons.OKCancel:
 					B_OK.Visible = B_Cancel.Visible = true;
+					B_Cancel.ColorStyle = ColorStyle.Yellow;
 					break;
 
 				case PromptButtons.AbortRetryIgnore:
 					B_Abort.Visible = B_Retry.Visible = B_Ignore.Visible = true;
+					B_Abort.ColorStyle = ColorStyle.Red;
+					B_Retry.ColorStyle = ColorStyle.Yellow;
+					B_Ignore.ColorStyle = ColorStyle.Green;
 					break;
 
 				case PromptButtons.YesNoCancel:
 					B_Yes.Visible = B_No.Visible = B_Cancel.Visible = true;
+					B_No.ColorStyle = ColorStyle.Red;
+					B_Cancel.ColorStyle = ColorStyle.Yellow;
+					B_Yes.ColorStyle = ColorStyle.Green;
 					break;
 
 				case PromptButtons.YesNo:
 					B_Yes.Visible = B_No.Visible = true;
+					B_No.ColorStyle = ColorStyle.Red;
+					B_Yes.ColorStyle = ColorStyle.Green;
 					break;
 
 				case PromptButtons.RetryCancel:
 					B_Retry.Visible = B_Cancel.Visible = true;
+					B_Cancel.ColorStyle = ColorStyle.Red;
+					B_Retry.ColorStyle = ColorStyle.Green;
 					break;
 
 				default:

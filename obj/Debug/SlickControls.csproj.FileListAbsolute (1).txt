@@ -148,7 +148,6 @@ C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\Slick
 C:\Users\Jad Hajjar\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickCheckbox.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Programming\#Main Projects\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickProgressBar.resources
 C:\Users\Jad Hajjar\Desktop\Documents\Programming\#Main Projects\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickCheckbox.resources
-C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.csprojResolveAssemblyReference.cache
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.dll
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.pdb
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\MechanikaDesign.WinForms.UI.ColorPicker.ColorSliderVertical.resources
@@ -169,7 +168,6 @@ C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControl
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickStrip.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickTextBox.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickTile.resources
-C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.VerticalScroll.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Forms.BaseForm.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Forms.ChangeLogForm.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Forms.DropDownItems.resources
@@ -187,3 +185,17 @@ C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControl
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Panels.PC_ThemeChanger.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Properties.Resources.resources
 C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.csproj.GenerateResource.Cache
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickDateTime.resources
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickScroll.resources
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Forms.ProccessPrompt.resources
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\SlickControls.dll
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\SlickControls.pdb
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\Extensions.dll
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\Extensions.pdb
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Controls.SlickGrid.resources
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.Panels.SideBarPanelContent.resources
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.csprojAssemblyReference.cache
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.csproj.CoreCompileInputs.cache
+C:\Users\Jad\Desktop\Documents\Google Drive\Solutions\SlickControls\SlickControls\obj\Debug\SlickControls.csproj.CopyComplete

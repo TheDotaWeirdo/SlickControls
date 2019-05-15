@@ -105,7 +105,7 @@ namespace SlickControls.Forms
 		{
 			if (!lockUpdates && TB_Hex.ValidInput)
 			{
-				var grps = Regex.Match(TB_Hex.Text.ToLower(), @"#((?:[a-f]|[0-9]){2})((?:[a-f]|[0-9]){2})((?:[a-f]|[0-9]){2})", RegexOptions.IgnoreCase).Groups;
+				var grps = Regex.Match(TB_Hex.Text.ToLower(), @"#?((?:[a-f]|[0-9]){2})((?:[a-f]|[0-9]){2})((?:[a-f]|[0-9]){2})", RegexOptions.IgnoreCase).Groups;
 				SetColor(Color.FromArgb(
 					int.Parse(grps[1].Value, System.Globalization.NumberStyles.HexNumber),
 					int.Parse(grps[2].Value, System.Globalization.NumberStyles.HexNumber),

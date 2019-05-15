@@ -14,7 +14,7 @@ namespace SlickControls.Classes
 	public class Notification
 	{
 		public string Title { get; }
-		public string Description { get; }
+		public string Description { get; internal set; }
 		public PromptIcons Icon { get; }
 		public ExtensionClass.action Action { get; }
 		public Action<PictureBox, Graphics> OnPaint { get; set; }

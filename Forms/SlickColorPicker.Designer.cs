@@ -29,9 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.colorPreview = new System.Windows.Forms.Panel();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.FLP_LastColors = new System.Windows.Forms.FlowLayoutPanel();
 			this.colorBox2D = new MechanikaDesign.WinForms.UI.ColorPicker.ColorBox2D();
 			this.colorSlider = new MechanikaDesign.WinForms.UI.ColorPicker.ColorSliderVertical();
 			this.TB_Lum = new SlickControls.Controls.SlickTextBox();
@@ -40,9 +37,12 @@
 			this.TB_Green = new SlickControls.Controls.SlickTextBox();
 			this.TB_Hue = new SlickControls.Controls.SlickTextBox();
 			this.TB_Blue = new SlickControls.Controls.SlickTextBox();
+			this.colorPreview = new System.Windows.Forms.Panel();
 			this.TB_Hex = new SlickControls.Controls.SlickTextBox();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.B_Cancel = new SlickControls.Controls.SlickButton();
 			this.B_Confirm = new SlickControls.Controls.SlickButton();
+			this.FLP_LastColors = new System.Windows.Forms.FlowLayoutPanel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.B_Cancel)).BeginInit();
@@ -84,45 +84,6 @@
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(698, 312);
 			this.tableLayoutPanel1.TabIndex = 3;
 			// 
-			// colorPreview
-			// 
-			this.colorPreview.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.colorPreview.Location = new System.Drawing.Point(484, 5);
-			this.colorPreview.Name = "colorPreview";
-			this.colorPreview.Size = new System.Drawing.Size(48, 48);
-			this.colorPreview.TabIndex = 3;
-			this.colorPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.colorPreview_Paint);
-			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.ColumnCount = 2;
-			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 5);
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Controls.Add(this.B_Cancel, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.B_Confirm, 0, 0);
-			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 264);
-			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.66667F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.33334F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(698, 48);
-			this.tableLayoutPanel2.TabIndex = 0;
-			// 
-			// FLP_LastColors
-			// 
-			this.FLP_LastColors.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.FLP_LastColors.Location = new System.Drawing.Point(0, 0);
-			this.FLP_LastColors.Margin = new System.Windows.Forms.Padding(0);
-			this.FLP_LastColors.Name = "FLP_LastColors";
-			this.FLP_LastColors.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-			this.tableLayoutPanel1.SetRowSpan(this.FLP_LastColors, 6);
-			this.FLP_LastColors.Size = new System.Drawing.Size(115, 264);
-			this.FLP_LastColors.TabIndex = 7;
-			// 
 			// colorBox2D
 			// 
 			this.colorBox2D.ColorMode = MechanikaDesign.WinForms.UI.ColorPicker.ColorModes.Hue;
@@ -158,10 +119,14 @@
 			this.TB_Lum.Location = new System.Drawing.Point(586, 202);
 			this.TB_Lum.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Lum.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Lum.MaxLength = 3;
+			this.TB_Lum.MaxLength = 32767;
 			this.TB_Lum.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Lum.Name = "TB_Lum";
+			this.TB_Lum.Password = false;
 			this.TB_Lum.Placeholder = "0";
+			this.TB_Lum.ReadOnly = false;
+			this.TB_Lum.Required = true;
+			this.TB_Lum.SelectAllOnFocus = false;
 			this.TB_Lum.SelectedText = "";
 			this.TB_Lum.SelectionLength = 0;
 			this.TB_Lum.SelectionStart = 0;
@@ -181,10 +146,14 @@
 			this.TB_Red.Location = new System.Drawing.Point(455, 86);
 			this.TB_Red.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Red.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Red.MaxLength = 3;
+			this.TB_Red.MaxLength = 32767;
 			this.TB_Red.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Red.Name = "TB_Red";
+			this.TB_Red.Password = false;
 			this.TB_Red.Placeholder = "0";
+			this.TB_Red.ReadOnly = false;
+			this.TB_Red.Required = true;
+			this.TB_Red.SelectAllOnFocus = false;
 			this.TB_Red.SelectedText = "";
 			this.TB_Red.SelectionLength = 0;
 			this.TB_Red.SelectionStart = 0;
@@ -204,10 +173,14 @@
 			this.TB_Sat.Location = new System.Drawing.Point(586, 144);
 			this.TB_Sat.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Sat.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Sat.MaxLength = 3;
+			this.TB_Sat.MaxLength = 32767;
 			this.TB_Sat.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Sat.Name = "TB_Sat";
+			this.TB_Sat.Password = false;
 			this.TB_Sat.Placeholder = "0";
+			this.TB_Sat.ReadOnly = false;
+			this.TB_Sat.Required = true;
+			this.TB_Sat.SelectAllOnFocus = false;
 			this.TB_Sat.SelectedText = "";
 			this.TB_Sat.SelectionLength = 0;
 			this.TB_Sat.SelectionStart = 0;
@@ -227,10 +200,14 @@
 			this.TB_Green.Location = new System.Drawing.Point(455, 144);
 			this.TB_Green.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Green.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Green.MaxLength = 3;
+			this.TB_Green.MaxLength = 32767;
 			this.TB_Green.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Green.Name = "TB_Green";
+			this.TB_Green.Password = false;
 			this.TB_Green.Placeholder = "0";
+			this.TB_Green.ReadOnly = false;
+			this.TB_Green.Required = true;
+			this.TB_Green.SelectAllOnFocus = false;
 			this.TB_Green.SelectedText = "";
 			this.TB_Green.SelectionLength = 0;
 			this.TB_Green.SelectionStart = 0;
@@ -250,10 +227,14 @@
 			this.TB_Hue.Location = new System.Drawing.Point(586, 86);
 			this.TB_Hue.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Hue.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Hue.MaxLength = 3;
+			this.TB_Hue.MaxLength = 32767;
 			this.TB_Hue.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Hue.Name = "TB_Hue";
+			this.TB_Hue.Password = false;
 			this.TB_Hue.Placeholder = "0";
+			this.TB_Hue.ReadOnly = false;
+			this.TB_Hue.Required = true;
+			this.TB_Hue.SelectAllOnFocus = false;
 			this.TB_Hue.SelectedText = "";
 			this.TB_Hue.SelectionLength = 0;
 			this.TB_Hue.SelectionStart = 0;
@@ -273,10 +254,14 @@
 			this.TB_Blue.Location = new System.Drawing.Point(455, 202);
 			this.TB_Blue.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Blue.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Blue.MaxLength = 3;
+			this.TB_Blue.MaxLength = 32767;
 			this.TB_Blue.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Blue.Name = "TB_Blue";
+			this.TB_Blue.Password = false;
 			this.TB_Blue.Placeholder = "0";
+			this.TB_Blue.ReadOnly = false;
+			this.TB_Blue.Required = true;
+			this.TB_Blue.SelectAllOnFocus = false;
 			this.TB_Blue.SelectedText = "";
 			this.TB_Blue.SelectionLength = 0;
 			this.TB_Blue.SelectionStart = 0;
@@ -288,6 +273,15 @@
 			this.TB_Blue.ValidationRegex = "";
 			this.TB_Blue.TextChanged += new System.EventHandler(this.RGB_TextChanged);
 			// 
+			// colorPreview
+			// 
+			this.colorPreview.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.colorPreview.Location = new System.Drawing.Point(484, 5);
+			this.colorPreview.Name = "colorPreview";
+			this.colorPreview.Size = new System.Drawing.Size(48, 48);
+			this.colorPreview.TabIndex = 3;
+			this.colorPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.colorPreview_Paint);
+			// 
 			// TB_Hex
 			// 
 			this.TB_Hex.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -296,10 +290,14 @@
 			this.TB_Hex.Location = new System.Drawing.Point(586, 12);
 			this.TB_Hex.Margin = new System.Windows.Forms.Padding(12);
 			this.TB_Hex.MaximumSize = new System.Drawing.Size(900, 34);
-			this.TB_Hex.MaxLength = 7;
+			this.TB_Hex.MaxLength = 32767;
 			this.TB_Hex.MinimumSize = new System.Drawing.Size(50, 34);
 			this.TB_Hex.Name = "TB_Hex";
+			this.TB_Hex.Password = false;
 			this.TB_Hex.Placeholder = null;
+			this.TB_Hex.ReadOnly = false;
+			this.TB_Hex.Required = true;
+			this.TB_Hex.SelectAllOnFocus = false;
 			this.TB_Hex.SelectedText = "";
 			this.TB_Hex.SelectionLength = 0;
 			this.TB_Hex.SelectionStart = 0;
@@ -310,6 +308,25 @@
 			this.TB_Hex.Validation = SlickControls.Enums.ValidationType.Custom;
 			this.TB_Hex.ValidationRegex = "";
 			this.TB_Hex.TextChanged += new System.EventHandler(this.TB_Hex_TextChanged);
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 2;
+			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 5);
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Controls.Add(this.B_Cancel, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.B_Confirm, 0, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 264);
+			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.66667F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.33334F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(698, 48);
+			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// B_Cancel
 			// 
@@ -350,6 +367,17 @@
 			this.B_Confirm.TabIndex = 11;
 			this.B_Confirm.Text = "Confirm";
 			this.B_Confirm.Click += new System.EventHandler(this.B_Confirm_Click);
+			// 
+			// FLP_LastColors
+			// 
+			this.FLP_LastColors.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.FLP_LastColors.Location = new System.Drawing.Point(0, 0);
+			this.FLP_LastColors.Margin = new System.Windows.Forms.Padding(0);
+			this.FLP_LastColors.Name = "FLP_LastColors";
+			this.FLP_LastColors.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
+			this.tableLayoutPanel1.SetRowSpan(this.FLP_LastColors, 6);
+			this.FLP_LastColors.Size = new System.Drawing.Size(115, 264);
+			this.FLP_LastColors.TabIndex = 7;
 			// 
 			// SlickColorPicker
 			// 

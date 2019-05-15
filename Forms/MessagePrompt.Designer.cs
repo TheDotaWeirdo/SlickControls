@@ -32,6 +32,11 @@ namespace SlickControls.Forms
 			this.TLP_Main = new System.Windows.Forms.TableLayoutPanel();
 			this.P_Spacer_1 = new System.Windows.Forms.Panel();
 			this.FLP_Buttons = new System.Windows.Forms.FlowLayoutPanel();
+			this.TLP_ImgText = new System.Windows.Forms.TableLayoutPanel();
+			this.L_Text = new System.Windows.Forms.Label();
+			this.PB_Icon = new System.Windows.Forms.PictureBox();
+			this.base_P_Container = new System.Windows.Forms.Panel();
+			this.base_P_Content = new System.Windows.Forms.Panel();
 			this.B_Cancel = new SlickControls.Controls.SlickButton();
 			this.B_Ignore = new SlickControls.Controls.SlickButton();
 			this.B_Retry = new SlickControls.Controls.SlickButton();
@@ -39,14 +44,13 @@ namespace SlickControls.Forms
 			this.B_OK = new SlickControls.Controls.SlickButton();
 			this.B_No = new SlickControls.Controls.SlickButton();
 			this.B_Yes = new SlickControls.Controls.SlickButton();
-			this.TLP_ImgText = new System.Windows.Forms.TableLayoutPanel();
 			this.TB_Input = new SlickControls.Controls.SlickTextBox();
-			this.L_Text = new System.Windows.Forms.Label();
-			this.PB_Icon = new System.Windows.Forms.PictureBox();
-			this.base_P_Container = new System.Windows.Forms.Panel();
-			this.base_P_Content = new System.Windows.Forms.Panel();
 			this.TLP_Main.SuspendLayout();
 			this.FLP_Buttons.SuspendLayout();
+			this.TLP_ImgText.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PB_Icon)).BeginInit();
+			this.base_P_Container.SuspendLayout();
+			this.base_P_Content.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.B_Cancel)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Ignore)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Retry)).BeginInit();
@@ -54,10 +58,6 @@ namespace SlickControls.Forms
 			((System.ComponentModel.ISupportInitialize)(this.B_OK)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_No)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Yes)).BeginInit();
-			this.TLP_ImgText.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PB_Icon)).BeginInit();
-			this.base_P_Container.SuspendLayout();
-			this.base_P_Content.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TLP_Main
@@ -104,146 +104,6 @@ namespace SlickControls.Forms
 			this.FLP_Buttons.Size = new System.Drawing.Size(366, 42);
 			this.FLP_Buttons.TabIndex = 2;
 			// 
-			// B_Cancel
-			// 
-			this.B_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_Cancel.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_Cancel.ColorShade = null;
-			this.B_Cancel.IconSize = 16;
-			this.B_Cancel.Image = global::SlickControls.Properties.Resources.Tiny_Cancel;
-			this.B_Cancel.Location = new System.Drawing.Point(271, 7);
-			this.B_Cancel.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_Cancel.Name = "B_Cancel";
-			this.B_Cancel.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_Cancel.Size = new System.Drawing.Size(90, 28);
-			this.B_Cancel.TabIndex = 0;
-			this.B_Cancel.Text = "Cancel";
-			this.B_Cancel.Visible = false;
-			this.B_Cancel.Click += new System.EventHandler(this.B_Cancel_Click);
-			// 
-			// B_Ignore
-			// 
-			this.B_Ignore.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Ignore.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_Ignore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_Ignore.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_Ignore.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_Ignore.ColorShade = null;
-			this.B_Ignore.IconSize = 16;
-			this.B_Ignore.Image = global::SlickControls.Properties.Resources.Tiny_Skip;
-			this.B_Ignore.Location = new System.Drawing.Point(171, 7);
-			this.B_Ignore.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_Ignore.Name = "B_Ignore";
-			this.B_Ignore.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_Ignore.Size = new System.Drawing.Size(90, 28);
-			this.B_Ignore.TabIndex = 1;
-			this.B_Ignore.Text = "Ignore";
-			this.B_Ignore.Visible = false;
-			this.B_Ignore.Click += new System.EventHandler(this.B_Ignore_Click);
-			// 
-			// B_Retry
-			// 
-			this.B_Retry.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Retry.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_Retry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_Retry.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_Retry.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_Retry.ColorShade = null;
-			this.B_Retry.IconSize = 16;
-			this.B_Retry.Image = global::SlickControls.Properties.Resources.Tiny_Retry;
-			this.B_Retry.Location = new System.Drawing.Point(71, 7);
-			this.B_Retry.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_Retry.Name = "B_Retry";
-			this.B_Retry.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_Retry.Size = new System.Drawing.Size(90, 28);
-			this.B_Retry.TabIndex = 2;
-			this.B_Retry.Text = "Retry";
-			this.B_Retry.Visible = false;
-			this.B_Retry.Click += new System.EventHandler(this.B_Retry_Click);
-			// 
-			// B_Abort
-			// 
-			this.B_Abort.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Abort.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_Abort.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_Abort.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_Abort.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_Abort.ColorShade = null;
-			this.B_Abort.IconSize = 16;
-			this.B_Abort.Image = global::SlickControls.Properties.Resources.Tiny_Abort;
-			this.B_Abort.Location = new System.Drawing.Point(271, 49);
-			this.B_Abort.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_Abort.Name = "B_Abort";
-			this.B_Abort.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_Abort.Size = new System.Drawing.Size(90, 28);
-			this.B_Abort.TabIndex = 3;
-			this.B_Abort.Text = "Abort";
-			this.B_Abort.Visible = false;
-			this.B_Abort.Click += new System.EventHandler(this.B_Abort_Click);
-			// 
-			// B_OK
-			// 
-			this.B_OK.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_OK.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_OK.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_OK.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_OK.ColorShade = null;
-			this.B_OK.IconSize = 16;
-			this.B_OK.Image = global::SlickControls.Properties.Resources.Tiny_Ok;
-			this.B_OK.Location = new System.Drawing.Point(171, 49);
-			this.B_OK.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_OK.Name = "B_OK";
-			this.B_OK.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_OK.Size = new System.Drawing.Size(90, 28);
-			this.B_OK.TabIndex = 4;
-			this.B_OK.Text = "OK";
-			this.B_OK.Visible = false;
-			this.B_OK.Click += new System.EventHandler(this.B_OK_Click);
-			// 
-			// B_No
-			// 
-			this.B_No.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_No.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_No.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_No.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_No.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_No.ColorShade = null;
-			this.B_No.IconSize = 16;
-			this.B_No.Image = global::SlickControls.Properties.Resources.Tiny_Cancel;
-			this.B_No.Location = new System.Drawing.Point(71, 49);
-			this.B_No.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_No.Name = "B_No";
-			this.B_No.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_No.Size = new System.Drawing.Size(90, 28);
-			this.B_No.TabIndex = 5;
-			this.B_No.Text = "No";
-			this.B_No.Visible = false;
-			this.B_No.Click += new System.EventHandler(this.B_No_Click);
-			// 
-			// B_Yes
-			// 
-			this.B_Yes.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.B_Yes.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.B_Yes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.B_Yes.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.B_Yes.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.B_Yes.ColorShade = null;
-			this.B_Yes.IconSize = 16;
-			this.B_Yes.Image = global::SlickControls.Properties.Resources.Tiny_Ok;
-			this.B_Yes.Location = new System.Drawing.Point(271, 91);
-			this.B_Yes.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-			this.B_Yes.Name = "B_Yes";
-			this.B_Yes.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-			this.B_Yes.Size = new System.Drawing.Size(90, 28);
-			this.B_Yes.TabIndex = 6;
-			this.B_Yes.Text = "Yes";
-			this.B_Yes.Visible = false;
-			this.B_Yes.Click += new System.EventHandler(this.B_Yes_Click);
-			// 
 			// TLP_ImgText
 			// 
 			this.TLP_ImgText.ColumnCount = 2;
@@ -262,30 +122,6 @@ namespace SlickControls.Forms
 			this.TLP_ImgText.Size = new System.Drawing.Size(360, 148);
 			this.TLP_ImgText.TabIndex = 0;
 			this.TLP_ImgText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
-			// 
-			// TB_Input
-			// 
-			this.TB_Input.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.TB_Input.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
-			this.TB_Input.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(26)))), ((int)(((byte)(32)))));
-			this.TB_Input.Image = null;
-			this.TB_Input.LabelText = "Input";
-			this.TB_Input.Location = new System.Drawing.Point(75, 105);
-			this.TB_Input.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-			this.TB_Input.MaximumSize = new System.Drawing.Size(9999, 34);
-			this.TB_Input.MaxLength = 32767;
-			this.TB_Input.MinimumSize = new System.Drawing.Size(50, 35);
-			this.TB_Input.Name = "TB_Input";
-			this.TB_Input.Placeholder = "";
-			this.TB_Input.SelectedText = "";
-			this.TB_Input.SelectionLength = 0;
-			this.TB_Input.SelectionStart = 0;
-			this.TB_Input.Size = new System.Drawing.Size(269, 35);
-			this.TB_Input.TabIndex = 0;
-			this.TB_Input.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-			this.TB_Input.Validation = SlickControls.Enums.ValidationType.None;
-			this.TB_Input.ValidationRegex = "";
-			this.TB_Input.Visible = false;
 			// 
 			// L_Text
 			// 
@@ -335,6 +171,174 @@ namespace SlickControls.Forms
 			this.base_P_Content.Size = new System.Drawing.Size(366, 197);
 			this.base_P_Content.TabIndex = 2;
 			// 
+			// B_Cancel
+			// 
+			this.B_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_Cancel.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_Cancel.ColorShade = null;
+			this.B_Cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_Cancel.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_Cancel.IconSize = 16;
+			this.B_Cancel.Image = global::SlickControls.Properties.Resources.Tiny_Cancel;
+			this.B_Cancel.Location = new System.Drawing.Point(271, 7);
+			this.B_Cancel.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_Cancel.Name = "B_Cancel";
+			this.B_Cancel.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_Cancel.Size = new System.Drawing.Size(90, 28);
+			this.B_Cancel.TabIndex = 0;
+			this.B_Cancel.Text = "Cancel";
+			this.B_Cancel.Visible = false;
+			this.B_Cancel.Click += new System.EventHandler(this.B_Cancel_Click);
+			// 
+			// B_Ignore
+			// 
+			this.B_Ignore.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_Ignore.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_Ignore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_Ignore.ColorShade = null;
+			this.B_Ignore.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_Ignore.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_Ignore.IconSize = 16;
+			this.B_Ignore.Image = global::SlickControls.Properties.Resources.Tiny_Skip;
+			this.B_Ignore.Location = new System.Drawing.Point(171, 7);
+			this.B_Ignore.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_Ignore.Name = "B_Ignore";
+			this.B_Ignore.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_Ignore.Size = new System.Drawing.Size(90, 28);
+			this.B_Ignore.TabIndex = 1;
+			this.B_Ignore.Text = "Ignore";
+			this.B_Ignore.Visible = false;
+			this.B_Ignore.Click += new System.EventHandler(this.B_Ignore_Click);
+			// 
+			// B_Retry
+			// 
+			this.B_Retry.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_Retry.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_Retry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_Retry.ColorShade = null;
+			this.B_Retry.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_Retry.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_Retry.IconSize = 16;
+			this.B_Retry.Image = global::SlickControls.Properties.Resources.Tiny_Retry;
+			this.B_Retry.Location = new System.Drawing.Point(71, 7);
+			this.B_Retry.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_Retry.Name = "B_Retry";
+			this.B_Retry.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_Retry.Size = new System.Drawing.Size(90, 28);
+			this.B_Retry.TabIndex = 2;
+			this.B_Retry.Text = "Retry";
+			this.B_Retry.Visible = false;
+			this.B_Retry.Click += new System.EventHandler(this.B_Retry_Click);
+			// 
+			// B_Abort
+			// 
+			this.B_Abort.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_Abort.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_Abort.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_Abort.ColorShade = null;
+			this.B_Abort.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_Abort.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_Abort.IconSize = 16;
+			this.B_Abort.Image = global::SlickControls.Properties.Resources.Tiny_Abort;
+			this.B_Abort.Location = new System.Drawing.Point(271, 49);
+			this.B_Abort.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_Abort.Name = "B_Abort";
+			this.B_Abort.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_Abort.Size = new System.Drawing.Size(90, 28);
+			this.B_Abort.TabIndex = 3;
+			this.B_Abort.Text = "Abort";
+			this.B_Abort.Visible = false;
+			this.B_Abort.Click += new System.EventHandler(this.B_Abort_Click);
+			// 
+			// B_OK
+			// 
+			this.B_OK.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_OK.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_OK.ColorShade = null;
+			this.B_OK.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_OK.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_OK.IconSize = 16;
+			this.B_OK.Image = global::SlickControls.Properties.Resources.Tiny_Ok;
+			this.B_OK.Location = new System.Drawing.Point(171, 49);
+			this.B_OK.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_OK.Name = "B_OK";
+			this.B_OK.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_OK.Size = new System.Drawing.Size(90, 28);
+			this.B_OK.TabIndex = 4;
+			this.B_OK.Text = "OK";
+			this.B_OK.Visible = false;
+			this.B_OK.Click += new System.EventHandler(this.B_OK_Click);
+			// 
+			// B_No
+			// 
+			this.B_No.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_No.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_No.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_No.ColorShade = null;
+			this.B_No.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_No.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_No.IconSize = 16;
+			this.B_No.Image = global::SlickControls.Properties.Resources.Tiny_Cancel;
+			this.B_No.Location = new System.Drawing.Point(71, 49);
+			this.B_No.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_No.Name = "B_No";
+			this.B_No.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_No.Size = new System.Drawing.Size(90, 28);
+			this.B_No.TabIndex = 5;
+			this.B_No.Text = "No";
+			this.B_No.Visible = false;
+			this.B_No.Click += new System.EventHandler(this.B_No_Click);
+			// 
+			// B_Yes
+			// 
+			this.B_Yes.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.B_Yes.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.B_Yes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.B_Yes.ColorShade = null;
+			this.B_Yes.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.B_Yes.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.B_Yes.IconSize = 16;
+			this.B_Yes.Image = global::SlickControls.Properties.Resources.Tiny_Ok;
+			this.B_Yes.Location = new System.Drawing.Point(271, 91);
+			this.B_Yes.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+			this.B_Yes.Name = "B_Yes";
+			this.B_Yes.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+			this.B_Yes.Size = new System.Drawing.Size(90, 28);
+			this.B_Yes.TabIndex = 6;
+			this.B_Yes.Text = "Yes";
+			this.B_Yes.Visible = false;
+			this.B_Yes.Click += new System.EventHandler(this.B_Yes_Click);
+			// 
+			// TB_Input
+			// 
+			this.TB_Input.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.TB_Input.Font = new System.Drawing.Font("Nirmala UI", 9.75F);
+			this.TB_Input.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(26)))), ((int)(((byte)(32)))));
+			this.TB_Input.Image = null;
+			this.TB_Input.LabelText = "Input";
+			this.TB_Input.Location = new System.Drawing.Point(75, 106);
+			this.TB_Input.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+			this.TB_Input.MaximumSize = new System.Drawing.Size(9999, 34);
+			this.TB_Input.MaxLength = 32767;
+			this.TB_Input.MinimumSize = new System.Drawing.Size(50, 34);
+			this.TB_Input.Name = "TB_Input";
+			this.TB_Input.Password = false;
+			this.TB_Input.Placeholder = "";
+			this.TB_Input.ReadOnly = false;
+			this.TB_Input.Required = false;
+			this.TB_Input.SelectAllOnFocus = false;
+			this.TB_Input.SelectedText = "";
+			this.TB_Input.SelectionLength = 0;
+			this.TB_Input.SelectionStart = 0;
+			this.TB_Input.Size = new System.Drawing.Size(269, 34);
+			this.TB_Input.TabIndex = 0;
+			this.TB_Input.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+			this.TB_Input.Validation = SlickControls.Enums.ValidationType.None;
+			this.TB_Input.ValidationRegex = "";
+			this.TB_Input.Visible = false;
+			// 
 			// MessagePrompt
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -359,6 +363,10 @@ namespace SlickControls.Forms
 			this.Load += new System.EventHandler(this.MessagePrompt_Load);
 			this.TLP_Main.ResumeLayout(false);
 			this.FLP_Buttons.ResumeLayout(false);
+			this.TLP_ImgText.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PB_Icon)).EndInit();
+			this.base_P_Container.ResumeLayout(false);
+			this.base_P_Content.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.B_Cancel)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Ignore)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Retry)).EndInit();
@@ -366,10 +374,6 @@ namespace SlickControls.Forms
 			((System.ComponentModel.ISupportInitialize)(this.B_OK)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_No)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.B_Yes)).EndInit();
-			this.TLP_ImgText.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.PB_Icon)).EndInit();
-			this.base_P_Container.ResumeLayout(false);
-			this.base_P_Content.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

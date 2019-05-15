@@ -30,7 +30,7 @@
 		{
 			this.TLP = new System.Windows.Forms.TableLayoutPanel();
 			this.label = new System.Windows.Forms.Label();
-			this.TB = new System.Windows.Forms.TextBox();
+			this.TB = new System.Windows.Forms.MaskedTextBox();
 			this.P_Bar = new System.Windows.Forms.Panel();
 			this.PB = new System.Windows.Forms.PictureBox();
 			this.L_Placerholder = new System.Windows.Forms.Label();
@@ -74,11 +74,11 @@
 			this.TB.BackColor = System.Drawing.SystemColors.Control;
 			this.TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.TB.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TB.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TB.Location = new System.Drawing.Point(0, 17);
-			this.TB.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+			this.TB.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
+			this.TB.Location = new System.Drawing.Point(0, 18);
+			this.TB.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
 			this.TB.Name = "TB";
-			this.TB.Size = new System.Drawing.Size(180, 16);
+			this.TB.Size = new System.Drawing.Size(180, 15);
 			this.TB.TabIndex = 1;
 			this.TB.TextChanged += new System.EventHandler(this.TB_TextChanged);
 			this.TB.Enter += new System.EventHandler(this.TB_Enter);
@@ -113,10 +113,10 @@
 			this.L_Placerholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.L_Placerholder.AutoSize = true;
 			this.L_Placerholder.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.L_Placerholder.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.L_Placerholder.Location = new System.Drawing.Point(5, 16);
+			this.L_Placerholder.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Italic);
+			this.L_Placerholder.Location = new System.Drawing.Point(5, 18);
 			this.L_Placerholder.Name = "L_Placerholder";
-			this.L_Placerholder.Size = new System.Drawing.Size(78, 16);
+			this.L_Placerholder.Size = new System.Drawing.Size(73, 15);
 			this.L_Placerholder.TabIndex = 1;
 			this.L_Placerholder.Text = "Placeholder";
 			this.L_Placerholder.Click += new System.EventHandler(this.L_Placerholder_Click);
@@ -145,7 +145,7 @@
 
 		protected System.Windows.Forms.TableLayoutPanel TLP;
 		protected System.Windows.Forms.Label label;
-		protected System.Windows.Forms.TextBox TB;
+		protected System.Windows.Forms.MaskedTextBox TB;
 		protected System.Windows.Forms.Panel P_Bar;
 		protected System.Windows.Forms.Label L_Placerholder;
 		protected System.Windows.Forms.PictureBox PB;

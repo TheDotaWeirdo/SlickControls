@@ -126,7 +126,7 @@ namespace SlickControls.Panels
 
 		public void SetPanel<T>(PanelItem panelItem, bool dispose = true, bool clearHistory = true) where T : PanelContent, new()
 		{
-			if (CurrentPanel != null && ((CurrentPanel.PanelItem == panelItem && !panelItem.ForceReopen) || !CurrentPanel.CanExit()))
+			if (CurrentPanel != null && ((CurrentPanel.PanelItem == panelItem && !panelItem.ForceReopen) || !CurrentPanel.CanExit(dispose)))
 				return;
 
 			if (clearHistory)
@@ -187,7 +187,7 @@ namespace SlickControls.Panels
 		{
 			if (CurrentPanel != null && (
 					(CurrentPanel.PanelItem != null && CurrentPanel.PanelItem == panelItem && !panelItem.ForceReopen)
-					|| (dispose && !CurrentPanel.CanExit())
+					|| (dispose && !CurrentPanel.CanExit(dispose))
 				))
 				return;
 
@@ -379,18 +379,17 @@ namespace SlickControls.Panels
 			base_SideScroll.LinkedControl = base_TLP_PanelItems;
 		}
 
-		private void RecursiveMouseDown(Control ctrl, int level = 0)
+		private void RecursiveMouseDown(Control ctrl)
 		{
-			if (level < 5 && (ctrl is Panel || ctrl is UserControl))
+			if (ctrl is Panel || ctrl is UserControl)
 			{
 				ctrl.MouseDown += Form_MouseDown;
 
-				foreach (var item in ctrl.Controls.ThatAre<Panel>())
-					RecursiveMouseDown(item, level + 1);
+				foreach (var item in ctrl.Controls.ThatAre<Panel>().Where(x => x.Tag?.ToString() != "NoMouseDown"))
+					RecursiveMouseDown(item);
 
-				if (level <= 1)
-					foreach (var item in ctrl.Controls.ThatAre<Label>())
-						item.MouseDown += Form_MouseDown;
+				foreach (var item in ctrl.Controls.ThatAre<Label>().Where(x => x.Tag?.ToString() != "NoMouseDown"))
+					item.MouseDown += Form_MouseDown;
 			}
 		}
 

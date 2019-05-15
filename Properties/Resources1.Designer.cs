@@ -231,6 +231,16 @@ namespace SlickControls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Tiny_Checked {
+            get {
+                object obj = ResourceManager.GetObject("Tiny_Checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tiny_Circle_Empty {
             get {
                 object obj = ResourceManager.GetObject("Tiny_Circle_Empty", resourceCulture);
@@ -411,6 +421,16 @@ namespace SlickControls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Tiny_Today {
+            get {
+                object obj = ResourceManager.GetObject("Tiny_Today", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tiny_ToggleOff {
             get {
                 object obj = ResourceManager.GetObject("Tiny_ToggleOff", resourceCulture);
@@ -424,6 +444,16 @@ namespace SlickControls.Properties {
         internal static System.Drawing.Bitmap Tiny_ToggleOn {
             get {
                 object obj = ResourceManager.GetObject("Tiny_ToggleOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tiny_Unchecked {
+            get {
+                object obj = ResourceManager.GetObject("Tiny_Unchecked", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

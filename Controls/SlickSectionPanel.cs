@@ -12,6 +12,8 @@ namespace SlickControls.Controls
 	[Designer(typeof(SectionPanelControlDesigner))]
 	public partial class SlickSectionPanel : SlickControl
 	{
+		private bool _active;
+
 		public SlickSectionPanel()
 		{
 			InitializeComponent();
@@ -34,7 +36,7 @@ namespace SlickControls.Controls
 		}
 
 		[Category("Appearance")]
-		public bool Active { get; set; }
+		public bool Active { get => _active; set { _active = value; DesignChanged(FormDesign.Design); } }
 
 		[Category("Appearance")]
 		public string[] Flavor { get; set; }
@@ -97,7 +99,7 @@ namespace SlickControls.Controls
 
 		private void FLP_Content_ControlsChanged(object sender, ControlEventArgs e)
 		{
-			 if (AutoHide && !DesignMode)
+			if (AutoHide && !DesignMode)
 				Visible = Content.Controls.Count > 0;
 			MaximumSize = new Size(9999, Content.Height + Content.Top);
 		}
